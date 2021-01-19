@@ -1,0 +1,25 @@
+{
+  "name": "grid-dice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guillaume-Toussaint/Grid-Dice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Guillaume-Toussaint/Grid-Dice/issues"
+  },
+  "homepage": "https://github.com/Guillaume-Toussaint/Grid-Dice#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "socketio": "^1.0.0"
+  }
+}
