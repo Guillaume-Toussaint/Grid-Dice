@@ -8,6 +8,12 @@ const express = require('express');
 
 const app = express();
 const port = 8000;
+
+
+const ConnectionController =  require("./controller/ConnectionController.js");
+//connec_control = new ConnectionController();
+ConnectionController.sign_in(0,0);
+
 app.get('/', (req, res, next) => {
 
   res.render("acceuil.ejs");
