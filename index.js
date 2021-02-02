@@ -3,22 +3,35 @@
 
 const express = require('express');
 //const session = require('cookie-session');
-//const bodyParser = require('body-parser');
-//const urlencodedParser = bodyParser.urlencoded({ extended: false });
+const bodyParser = require('body-parser');
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 const port = 8000;
 
 
 const ConnectionController =  require("./controller/ConnectionController.js");
 //connec_control = new ConnectionController();
-ConnectionController.sign_in(0,0);
 
 app.get('/', (req, res, next) => {
 
   res.render("acceuil.ejs");
 });
 
+app.get('/login_page',(req,res,next) => {
+
+
+  res.render("connect.ejs");
+});
+
+
+app.get('/sign_up_page',(req,res,next) => {
+
+
+  res.render("inscription.ejs");
+});
 
 app.get('/partie/:uuid', (req, res, next) => {
   //EXEMPLE D'USAGE
@@ -92,16 +105,31 @@ app.post('/new/contact', (req, res, next) => {
 
 app.post("/connect/", (req, res, next) => {
   console.log(req.body);
-  res.status(201).json({
-    message: 'Objet créé !'
-  });
+  let contenu = JSON.parse(JSON.stringify(req.body));
+  console.log("Contenu : "+contenu);
+  ConnectionController.sign_in(contenu.username,contenu.password);
+
+  console.log("done");
+
+  res.status(201);
+
+  res.render('connect.ejs');
 });
 
 app.post("/signup/", (req, res, next) => {
   console.log(req.body);
-  res.status(201).json({
-    message: 'Objet créé !'
-  });
+  let contenu = JSON.parse(JSON.stringify(req.body));
+  console.log("Contenu : "+contenu);
+  let result = ConnectionController.sign_up(contenu.email,contenu.username,contenu.password);
+
+  console.log("done");
+  if(result){
+  res.redirect("/login_page/");
+}else{
+  res.status(500);
+  res.send("Impossible de vous inscrire");
+}
+
 });
 
 
