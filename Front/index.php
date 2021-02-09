@@ -10,9 +10,7 @@
     </head>
     <body>
         <!--Navbar lien-->
-        <?php 
-        include ("navbar.php") ; 
-        ?>
+        <?php include ("navbar.php") ?>
 
         <!-- Acceuil-->
         <div style="background-color: red;">
