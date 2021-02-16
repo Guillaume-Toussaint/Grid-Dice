@@ -1,4 +1,4 @@
 # G&D
-Grid and Dice /n
-Grille et dé \n
-Geeks and Dungeons \n
+## Grid and Dice 
+## Grille et dé 
+## Geeks and Dungeons 
