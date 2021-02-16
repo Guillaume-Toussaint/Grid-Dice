@@ -1,1 +1,8 @@
 Test
+<%
+if (connected) { %>
+<h3> Bienvenue, <%=username %> </h3>
+<% }else{ %>
+
+<h3> On se connecte <a href="/login_page">svp</a> </h3>
+<% } %>

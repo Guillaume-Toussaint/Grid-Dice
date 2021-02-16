@@ -4,9 +4,16 @@
 const express = require('express');
 //const session = require('cookie-session');
 const bodyParser = require('body-parser');
+const session = require('express-session')
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+  secret : "Hello world",
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
 
 
 const port = 8000;
@@ -16,8 +23,9 @@ const ConnectionController =  require("./controller/ConnectionController.js");
 //connec_control = new ConnectionController();
 
 app.get('/', (req, res, next) => {
-
-  res.render("acceuil.ejs");
+  console.log(req.session.pseudo);
+  res.render("acceuil.ejs",{connected : req.session.connected,
+  username : req.session.pseudo});
 });
 
 app.get('/login_page',(req,res,next) => {
@@ -64,6 +72,18 @@ app.get('/search/contact/:uuid', (req, res, next) => {
 
 });
 
+app.get("/disconnect",(req,res)=>{
+  if(req.session.connected && req.session.pseudo){
+    delete req.session.connected;
+    delete req.session.pseudo;
+    res.redirect("/login_page");
+  }else{
+
+  }
+
+
+});
+
 
 app.post('/new/game', (req, res, next) => {
   console.log(req.body);
@@ -103,17 +123,30 @@ app.post('/new/contact', (req, res, next) => {
   });
 });
 
-app.post("/connect/", (req, res, next) => {
-  console.log(req.body);
+app.post("/connect/", async (req, res, next) => {
+  //console.log(req.body);
   let contenu = JSON.parse(JSON.stringify(req.body));
-  console.log("Contenu : "+contenu);
-  ConnectionController.sign_in(contenu.username,contenu.password);
+  //console.log("Contenu : "+contenu);
+  let username =  await ConnectionController.sign_in(contenu.username,contenu.password);
+  //console.log("BONJOUR");
+  console.log("Promise terminée. Username : "+username);
 
-  console.log("done");
+    if(username){
+      req.session.pseudo = username;
+      req.session.connected = true;
+      //console.log("Session mise en place");
+      res.status(201);
 
-  res.status(201);
+      res.redirect('/');
+    }else{//Problème à la connexion, changer après
+      res.status(403);
+      res.send("Impossible de vous connecter avec ces identifiants");
 
-  res.render('connect.ejs');
+    }
+
+
+/*  console.log("Promise : "+promise);
+  res.redirect('/');*/
 });
 
 app.post("/signup/", (req, res, next) => {
