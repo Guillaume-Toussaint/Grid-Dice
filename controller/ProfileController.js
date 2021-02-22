@@ -27,7 +27,7 @@ module.exports = {
     const mysql = require("mysql");
     const db = require("./DatabaseConnection.js").createConnection();
 
-    const query = "SELECT u1.idUtilisateur,u1.pseudo,u2.idUtilisateur,u2.pseudo FROM Contact JOIN Utilisateur as u1 on u1.idUtilisateur = Contact.contact1 join Utilisateur as u2 on u2.idUtilisateur = Contact.contact2 where contact1 = ? OR contact2 = ?";
+    const query = "SELECT u1.idUtilisateur as id1 ,u1.pseudo as p1 ,u2.idUtilisateur as id2 ,u2.pseudo as p2 FROM Contact JOIN Utilisateur as u1 on u1.idUtilisateur = Contact.contact1 join Utilisateur as u2 on u2.idUtilisateur = Contact.contact2 where contact1 = ? OR contact2 = ?";
     //Ma fierté cette requête, elle marche du tonnerre et je m'attendais à un crash
     console.log("Query : "+query);
 
