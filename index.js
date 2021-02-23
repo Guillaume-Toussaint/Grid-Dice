@@ -20,6 +20,7 @@ const port = 8000;
 
 
 const ConnectionController =  require("./controller/ConnectionController.js");
+const PartieController = require("./controller/PartieController.js");
 //connec_control = new ConnectionController();
 
 app.get('/', (req, res, next) => {
