@@ -2,7 +2,7 @@
 module.exports = {
 
 
-    create_game(idCreator,name,idSystem,idMap, fuseauHorraire){
+    async create_game(idCreator,name,idSystem,idMap, fuseauHorraire){
         db = require("./DatabaseConnection.js").createConnection();
 
         let query = "INSERT INTO Partie(idOrganisateur,nomPartie,idSysteme,idCarte,"+
@@ -11,12 +11,7 @@ module.exports = {
 
         console.log("query : "+query);
 
-        db.query(query,function (err,result){
-            if (err) throw err;
-            else if(result[0]){
-                console.log("Partie créée"+result[0].idPartie);
-            }
-        })
+        await queryPartie(db,query);
     },
     async affiche_partie(idUtilisateur){
         db = require("./DatabaseConnection.js").createConnection();
@@ -64,28 +59,73 @@ module.exports = {
         return donnees;
 
         
-        
     },
+    async affiche_joueur(idPartie){
+        db = require("./DatabaseConnection.js").createConnection();
+        
+        query="SELECT idUtilisateur, pseudo FROM Joueur NATURAL JOIN Utilisateur WHERE idPartie = "+
+            idPartie;
+        console.log(query);
+
+        const joueurs=await queryPartie(db,query);
+        
+        let j=[];
+        for(i=0; i<joueurs.length;i++){
+            j.push({"idJoueur": joueurs[i].idUtilisateur,"pseudo":joueurs[i].pseudo});
+        }
+
+        donnees = {
+            "idPartie": idPartie,
+            "joueurs":j
+        };
+
+        console.log(donnees)
+        return donnees;
+
+    },
+    async accepte_joueur(idPartie,idUtilisateur){
+        db = require("./DatabaseConnection.js").createConnection();
+        
+        query="INSERT INTO Joueur(idPartie,idUtilisateur) VALUES ('"+idPartie+"','"+idUtilisateur+"')";
+        console.log(query);
+
+        await queryPartie(db,query);
+    },
+    async supprime_joueur(idPartie,idUtilisateur){
+        db = require("./DatabaseConnection.js").createConnection();
+        
+        query="DELETE FROM Joueur WHERE idPartie="+idPartie+" AND idUtilisateur="+idUtilisateur;
+        console.log(query);
+
+        await queryPartie(db,query);
+    },
+    async recuperer_caracteristique(){
+        db = require("./DatabaseConnection.js").createConnection();
+        
+        query="SELECT * FROM Caracteristique WHERE typeCaracteristique='Partie'"
+        console.log(query);
+
+        const allcarac=await queryPartie(db,query);
+        console.log(allcarac);
+
+        let donnees=[]
+        for(i=0;i<allcarac.length;i++){
+            donnees.push({'idCaracteristique':allcarac[i].idCaracteristique,
+                         'typeCaracteristique':allcarac[i].typeCaracteristique,
+                         'valeurCaracteristique':allcarac[i].valeurCaracteristique})
+        }
+
+        console.log(donnees);
+        return donnees;
+    }
 
 
 }
 
-/*
-db.query(query,function (err,result){
-    if (err) throw err;
-    else if(result){
-        console.log(result)
-    }
-})
-
-SELECT nomPartie, pseudo, nomSysteme, fuseauHorraire, DescriptionPartie, nomCarte, dateCréationPartie
-FROM Utilisateur NATURAL JOIN Partie NATURAL JOIN Systeme NATURAL JOIN Carte
-WHERE idPartie=1 AND idOrganisateur=idUtilisateur
-*/
 
 function queryPartie(db,query){
     
-    
+    //db = require("./DatabaseConnection.js").createConnection();
     
     return new Promise( (resolve,reject) => {
         db.query(query, (err,result) => {
