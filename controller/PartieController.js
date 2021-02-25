@@ -38,6 +38,10 @@ module.exports = {
                 }
                 query+=" WHERE idPartie="+idPartie;
                 break;
+            case "Delete":
+                query="DELETE FROM Partie WHERE idPartie="+idPartie;
+                listeCaracteristique=[];
+                break;
         }
         
 
