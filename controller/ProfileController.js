@@ -99,7 +99,94 @@ module.exports = {
                 });
               }
             );
-  }
+  },
+
+  queryp(db,query){
+
+      //db = require("./DatabaseConnection.js").createConnection();
+
+      return new Promise( (resolve,reject) => {
+          db.query(query, (err,result) => {
+              if (err) reject(err.message);
+              else if(result){
+                  console.log(result);
+                  resolve(result)
+              }
+          })
+      });
+  },
+
+
+  async userPreferences(idUser,arguments,caracteristiques){
+    db = require("./DatabaseConnection.js").createConnection();
+
+
+    const arguments=[];
+    /*if(idCreator!=null) arguments.push({'key': "idtilisateur", 'value':idCreator});
+    if(name!=null) arguments.push({'key':"nomPartie",'value':"\""+name+"\""});
+    if(idSystem!=null) arguments.push({'key':"idSysteme",'value':+idSystem});
+    if(idCarte!=null) arguments.push({'key':"idCarte",'value':idCarte});
+    if(fuseauHorraire!=null) arguments.push({'key':"fuseauHorraire",'value':fuseauHorraire});
+    if(description!=null) arguments.push({'key':"DescriptionPartie",'value':"\""+description+"\""});*/
+
+    const query = "";
+    switch(processus){
+        case "Create":
+            query="INSERT INTO Utilisateur (";
+            for(i=0;i<arguments.length;i++){
+                if(i==0) query+=arguments[i].key;
+                else query+=","+arguments[i].key;
+            }
+            query+=") VALUES (";
+            for(i=0;i<arguments.length;i++){
+                if(i==0) query+=arguments[i].value;
+                else query+=","+arguments[i].value;
+            }
+            query+=")";
+            break;
+        case "Update":
+            query="UPDATE Utilisateur SET ";
+            for(i=0;i<arguments.length;i++){
+                if(i==0) query+=arguments[i].key+"="+arguments[i].value;
+                else query+=","+arguments[i].key+"="+arguments[i].value;
+            }
+            query+=" WHERE idUtilisateur="+idUser;
+            break;
+        case "Delete":
+            query="DELETE FROM Utilisateur WHERE idUtilisateur="+idUser;
+            listeCaracteristique=[];
+            break;
+          }
+
+          const res=await queryp(db,query);
+          if(res.insertId!=0) idPartie=res.insertId;
+
+  },
+
+  async function change_caracteristique(idUser,listeCaracteristique){
+
+      db = require("./DatabaseConnection.js").createConnection();
+
+      console.log("la ca vient de change_caracteristique")
+      await queryPartie(db,"SELECT * FROM Utilisateur WHERE idUtilisateur="+idUser);
+
+      let query="DELETE FROM CaracteristiqueJoueur WHERE idUtilisateur="+idUser;
+      console.log(query);
+      await queryPartie(db,query);
+
+      for(i=0;i<listeCaracteristique.length;i++){
+          query="INSERT INTO CaracteristiqueJoueur (idUtilisateur,idCaracteristique) VALUES ("+idUser+","+
+                  listeCaracteristique[i]+")";
+          console.log(query);
+          await queryp(db,query);
+      }
+
+
+
+
+
+
+
 
 
 
