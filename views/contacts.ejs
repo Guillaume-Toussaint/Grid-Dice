@@ -9,27 +9,91 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     </head>
     <body>
-    
-        <div>
+
+        <div class="main">
             <!-- Navbar Profil/Contact-->
             <nav class="navbar navbar-light bg-light">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="Profil.php">Profil</a>
-                    <a class="nav-link" href="contact.ejs">Contact</a>
+                    <a class="nav-link active" aria-current="page" href="#">Profil</a>
+                    <a class="nav-link" href="contact.ejs">Contacts</a>
                 </div>
             </nav>
             <div class="form-group col-6 mx-auto">
-                <input type="text"  class="form-control" name="Alim" placeholder="Nom de la Partie">
-                <button type="button" class="btn btn-primary">Ajouter un contact</button>
+              <form >
+                <input type="text"  class="form-control" id="contact" placeholder="Pseudo du contact à ajouter">
+                <button onClick="addContact()" class="btn btn-primary">Ajouter un contact</button>
+              </form>
+
             </div>
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Gaetan</h5>
-                    <p class="card-text">Paladin</p>
-                    <button type="button" class="btn btn-primary">Envoye un message</button>
-                    <button type="button" class="btn btn-primary">Gérer</button>
-                </div>
-            </div>
+
+    <% contact.forEach(function(user){
+        let pseudo = id== user.id1 ? user.p1 : user.p2;
+
+      %>
+      <div class="card" style="width: 18rem;">
+          <div class="card-body">
+              <h5 class="card-title"><%-pseudo%></h5>
+              <%
+              if(user.permission == "normal"){
+              %>
+
+              <button type="button" class="btn btn-primary">Envoye un message</button>
+              <button type="button" class="btn btn-primary">Gérer</button> </div>
+              <%}else{%>
+                <button type="button" class="btn btn-primary">Accepter </button>
+                <button type="button" class="btn btn-primary">Refuser l'invitation</button> </div>
+                <% } %>
         </div>
-    </body>
+    <% });
+     %>
+</body>
+
+<script type="text/javascript">
+
+
+function addContact(){
+  let ok = true;
+  const pseudo = document.getElementById("contact").value;
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', 'search/contact/'+pseudo,false);
+  xhr.onload = function() {
+    alert("Requete terminée");
+    if (xhr.status !==200){
+    alert('L\'utilisateur recherché n\'existe pas');
+    }
+
+  };
+  xhr.send();
+  let ajout = new XMLHttpRequest();
+
+  ajout.open('POST', '/new/contact',false);
+
+  ajout.setRequestHeader("Content-Type", "application/json");
+  ajout.onload = function() {
+    if (ajout.status === 200) {
+      alert('L\'utilisateur a bien été ajouté');
+      //document.location.reload();
+    }
+  };
+  ajout.send(JSON.stringify({nom : pseudo}));
+
+
+}
+
+
+/*function addContact(pseudo){
+  let ajout = new XMLHttpRequest();
+  ajout.setRequestHeader("Content-Type", "application/json");
+
+  ajout.open('POST', '/new/contact',true);
+  ajout.onload = function() {
+    if (ajout.status === 200) {
+      alert('L\'utilisateur a bien été ajouté');
+      //document.location.reload();
+    }
+  };
+  ajout.send(JSON.stringify(pseudo));
+}*/
+
+</script>
 </html>
