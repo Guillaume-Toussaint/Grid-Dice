@@ -17,7 +17,7 @@
             <button type="button" class="btn btn-primary">Rechercher une partie</button>
             <button type="button" class="btn btn-primary">Acceder au flux</button>
 
-            <div>
+            <div><!-- Acces au parite en cour-->
               <div class="card" style="width: 18rem;">
                   <div class="card-body">
                     <h5 class="card-title">Castel Or-Azur</h5>
