@@ -24,7 +24,7 @@ module.exports = {
     let mysql = require("mysql");
     let db = require("./DatabaseConnection.js").createConnection();
 
-    let query = "SELECT * FROM Utilisateur NATURAL JOIN CaracteristiqueJoueur NATURAL JOIN Caracteristique where pseudo= ?";
+    let query = "SELECT * FROM Utilisateur where pseudo= ?";
 
     console.log("Query : "+query);
 
@@ -122,7 +122,7 @@ module.exports = {
   acceptContact(ownId,contactId){
     const db = require("./DatabaseConnection.js").createConnection();
 
-    const query = "UPDATE TABLE Contact SET COLUMN permission = 'normal' where (contact1= ? AND contact2 = ?) OR (contact= ? AND contact2 = ?)";
+    const query = "UPDATE Contact SET permission = 'normal' where (contact1= ? AND contact2 = ?) OR (contact1= ? AND contact2 = ?)";
 
     const values = [ownId,contactId,contactId,ownId];
 

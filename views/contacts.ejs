@@ -32,15 +32,15 @@
       %>
       <div class="card" style="width: 18rem;">
           <div class="card-body">
-              <h5 class="card-title"><%-pseudo%></h5>
+              <h5 class="card-title" id="<%-pseudo%>"><%-pseudo%></h5>
               <%
               if(user.permission == "normal"){
               %>
 
-              <button type="button" class="btn btn-primary">Envoye un message</button>
+              <button type="button" class="btn btn-primary">Envoyer un message</button>
               <button type="button" class="btn btn-primary">Gérer</button> </div>
               <%}else if(!inviting){%>
-                <button type="button" class="btn btn-primary">Accepter </button>
+                <button type="button" onclick="acceptInvite('<%-pseudo%>')" class="btn btn-primary">Accepter </button>
                 <button type="button" class="btn btn-primary">Refuser l'invitation</button> </div>
                 <% }else{%>
                     <label>En attente de réponse</label>
@@ -93,6 +93,28 @@ function addContact(){
 
 }
 
+
+
+function acceptInvite(ref){
+  const pseudoInput = ref;
+  console.log("à ajouter : "+pseudoInput);
+  let returns = false;
+
+
+  let ajout = new XMLHttpRequest();
+
+  ajout.open('POST', '/accept/invite',false);
+
+  ajout.setRequestHeader("Content-Type", "application/json");
+  ajout.onload = function() {
+    if (ajout.status === 200) {
+      alert('Invitation acceptée');
+      //document.location.reload();
+    }
+  };
+  ajout.send(JSON.stringify({nom : pseudoInput}));
+
+}
 
 /*function addContact(pseudo){
   let ajout = new XMLHttpRequest();
