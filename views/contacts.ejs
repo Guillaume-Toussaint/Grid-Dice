@@ -27,8 +27,8 @@
             </div>
 
     <% contact.forEach(function(user){
-        let pseudo = id== user.id1 ? user.p1 : user.p2;
-
+        let pseudo = username == user.p1 ? user.p2 : user.p1;
+        let inviting = username == user.p1 ? true : false;
       %>
       <div class="card" style="width: 18rem;">
           <div class="card-body">
@@ -39,10 +39,12 @@
 
               <button type="button" class="btn btn-primary">Envoye un message</button>
               <button type="button" class="btn btn-primary">Gérer</button> </div>
-              <%}else{%>
+              <%}else if(!inviting){%>
                 <button type="button" class="btn btn-primary">Accepter </button>
                 <button type="button" class="btn btn-primary">Refuser l'invitation</button> </div>
-                <% } %>
+                <% }else{%>
+                    <label>En attente de réponse</label>
+              <%  } %>
         </div>
     <% });
      %>
@@ -52,18 +54,29 @@
 
 
 function addContact(){
+
   let ok = true;
-  const pseudo = document.getElementById("contact").value;
+  const pseudoInput = document.getElementById("contact").value;
+
+  let returns = false;
+
+
   let xhr = new XMLHttpRequest();
-  xhr.open('GET', 'search/contact/'+pseudo,false);
+  xhr.open('GET', 'search/contact/'+pseudoInput,false);
   xhr.onload = function() {
-    alert("Requete terminée");
-    if (xhr.status !==200){
+    if (xhr.status !=200){
     alert('L\'utilisateur recherché n\'existe pas');
+    returns = true;
     }
 
   };
   xhr.send();
+
+  if(returns){
+    return;
+  }
+
+
   let ajout = new XMLHttpRequest();
 
   ajout.open('POST', '/new/contact',false);
@@ -75,7 +88,7 @@ function addContact(){
       //document.location.reload();
     }
   };
-  ajout.send(JSON.stringify({nom : pseudo}));
+  ajout.send(JSON.stringify({nom : pseudoInput}));
 
 
 }

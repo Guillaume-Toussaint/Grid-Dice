@@ -20,6 +20,26 @@ module.exports = {
               }
             );
   },
+  get_profile_info_by_pseudo(pseudo){
+    let mysql = require("mysql");
+    let db = require("./DatabaseConnection.js").createConnection();
+
+    let query = "SELECT * FROM Utilisateur NATURAL JOIN CaracteristiqueJoueur NATURAL JOIN Caracteristique where pseudo= ?";
+
+    console.log("Query : "+query);
+
+    return  new Promise(
+            (resolve,reject) => {
+              db.query(query, [pseudo],function (err, result) {
+                  if (err) {
+                    reject(err.message);
+                }
+                console.log(result[0]);
+                resolve(result[0]);
+                });
+              }
+            );
+  },
 
   account_exists(pseudo){
     let mysql = require("mysql");
@@ -74,7 +94,7 @@ module.exports = {
 
     const db = require("./DatabaseConnection.js").createConnection();
 
-    const query = "INSERT INTO Contact values(?,?,'pending')";
+    const query = "INSERT IGNORE INTO Contact values(?,?,'pending')";
 
 
     const values = [contact1,contact2];
@@ -84,7 +104,7 @@ module.exports = {
 
     return  new Promise(
             (resolve,reject) => {
-              db.query(query,[idUser] ,function (err, result) {
+              db.query(query,values ,function (err, result) {
                   if (err) {
                     console.log(err.message);
                     reject(0);//0 si ça foire
@@ -102,9 +122,9 @@ module.exports = {
   acceptContact(ownId,contactId){
     const db = require("./DatabaseConnection.js").createConnection();
 
-    const query = "UPDATE TABLE Contact SET COLUMN permission = 'normal' where contact1= ? AND contact2 = ?";
+    const query = "UPDATE TABLE Contact SET COLUMN permission = 'normal' where (contact1= ? AND contact2 = ?) OR (contact= ? AND contact2 = ?)";
 
-    const values = [ownId,contactId];
+    const values = [ownId,contactId,contactId,ownId];
 
 
     console.log("Query : "+query);
