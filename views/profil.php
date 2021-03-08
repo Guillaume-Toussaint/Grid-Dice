@@ -13,7 +13,7 @@
         <?php include ("navbar.php") ?>
 
         <!-- Acceuil-->
-        <div style="background-color: red;">
+        <div>
 
             <!-- Navbar Profil/Contact-->
             <nav class="navbar navbar-light bg-light">
@@ -25,18 +25,57 @@
 
             <!-- Card profil-->
             <div>
-              <div class="card" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Castel Or-Azur</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p>1</p>
-                    <i class="bi bi-person-fill"></i>
-                    <button type="button" class="btn btn-primary">Rejoindre</button>
-                  </div>
-               </div>
+                <h5>Nom utilisateur</h5>
+                <p>gaspard</p>
 
-               <button type="button" class="btn btn-primary">cree une partie</button>
+                <h5>Pays</h5>
+                <p>france</p>
+
+                <h5>Fuseau horaire</h5>
+                <p>GTM + 1</p>
+
+                <h5>Description</h5>
+                <p>un juour qui a tu les jeux fpezkf^pzkef^pzkef^pzkef^pkezf^pkzefpkzf^pz</p>
             </div>
+
+            <div>
+                <h5>preference de jeu</h5>
+                <div>
+                    <div>
+                        <p>Niveu de jeu</p>
+                        <ul>
+                            <li>novice</li>
+                            <li>moyenne</li>
+                            <li>complexe</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p>genre</p>
+                        <ul>
+                            <li>Cyberpunk</li>
+                            <li>Fantasy</li>
+                            <li>Post-apo</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <p>Systeme de preference</p>
+                        <ul>
+                            <li>D&D 5e</li>
+                            <li>l'appele de chtulu</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p>Meta</p>
+                        <ul>
+                            <li>Accepte les nouveaux joueurs</li>
+                            <li>Partie serieuse</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </body>
 </html>
