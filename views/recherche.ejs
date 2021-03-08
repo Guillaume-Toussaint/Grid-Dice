@@ -1,0 +1,26 @@
+<div class="modal-body">
+    <form method="get" action="resultat.ejs" autocomplete="on">
+      <div class="mb-3">
+        <label class="col-form-label">Mots clé de la recherche</label>
+        <input type="text" class="form-control" >
+        <label  for="Systeme">Rechercher dans : </label>
+          <select class="form-select" aria-label="Default select example">
+              <option selected>titre</option>
+              <option value="1">Game master</option>
+              <option value="2">description</option>
+              <option value="3">etiquette</option>
+          </select>
+      </div>
+      <div class="form-check">
+        <p>Caracteristique de la partie : </p>
+            <p>genre</p>
+            <input type="checkbox" name="option" id = "fantasy"value="">
+            <label class="form-ckeck-label" for="fantasy">fantasy </label>
+            <input type="checkbox" name="option" id="Sci-fi"value="">
+            <label class="form-ckeck-label" for="Sci-fi">Sci-fi </label>
+            <input type="checkbox" name="option" id="CyberPunk"value="">
+            <label class="form-ckeck-label" for="CyberPunk">"CyberPunk</label>
+    </div>
+    <input type="submit" class="btn btn-primary" name="submit" value="recherche">
+    </form>
+  </div>
