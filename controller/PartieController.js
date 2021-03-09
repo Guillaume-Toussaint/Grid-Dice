@@ -2,7 +2,29 @@ const { query } = require("express");
 
 module.exports = {
 
-
+    /**
+     * fonction qui permet de créer, modifier et supprimer une partie. Modifie aussi les
+     * caractéristiques de la partie selectionnée.
+     * @param {* type } processus chaine de caractère pour l'action de la fonction. 
+     *          Peut être : Create, Update, Delete
+     * @param {* type } idPartie l'identifiant de la partie à modifier. Par convention mettre -1
+     *          pour la création
+     * @param {* type } idCreator l'identifiant de l'organisateur de la partie. Mettre à null
+     *          lorsqu'il n'est pas nécessaire 
+     * @param {* type } name nom de la partie. Mettre à null lorsqu'il n'est pas nécessaire 
+     * @param {* type } idSystem identifiant du système utilisé pour la partie. Mettre à null
+     *          lorsqu'il n'est pas nécessaire 
+     * @param {* type } idCarte identifiant de la carte utilisé pour la partie. Mettre à null
+     *          lorsqu'il n'est pas nécessaire 
+     * @param {* type } fuseauHorraire fuseau horraire utilisé pour la partie à partir du 
+     *          méridien de greenwich (GMT + fuseauHorraire). Mettre à null lorsqu'il n'est pas
+     *          nécessaire
+     * @param {* type } description description de la partie. Mettre à null lorsqu'il n'est pas
+     *          nécessaire 
+     * @param {* Array} listeCaracteristique tableau contenant les identifiants de caractéristiques
+     *          à ajouter ou supprimer de la partie. Si le tableau est vide, les caractéristiques
+     *          ne seront plus liées à la partie.
+     */
     async modifie_partie(processus,idPartie,idCreator,name, idSystem,idCarte,fuseauHorraire,
                         description,listeCaracteristique){
         db = require("./DatabaseConnection.js").createConnection();
@@ -52,6 +74,10 @@ module.exports = {
 
         change_caracteristique(idPartie,listeCaracteristique);
     },
+    /**
+     * fonction qui récupère les identifiants des parties associées à un utilisateur
+     * @param {* type } idUtilisateur identifiant de l'utilisateur courant
+     */
     async partie_utilisateur(idUtilisateur){
         db = require("./DatabaseConnection.js").createConnection();
 
@@ -67,10 +93,14 @@ module.exports = {
         return donnees_parties(parties);
         
     },
+    /**
+     * Récupère les identifiants et les pseudo des joueurs associés à une partie
+     * @param { type } idPartie identifiant de la partie recherchée
+     */
     async affiche_joueur(idPartie){
         db = require("./DatabaseConnection.js").createConnection();
         
-        query="SELECT idUtilisateur, pseudo FROM Joueur NATURAL JOIN Utilisateur WHERE idPartie = "+
+        let query="SELECT idUtilisateur, pseudo FROM Joueur NATURAL JOIN Utilisateur WHERE idPartie = "+
             idPartie;
         console.log(query);
 
@@ -90,26 +120,39 @@ module.exports = {
         return donnees;
 
     },
+    /**
+     * Permet d'accepter un nouveau joueur dans la partie selectionnée
+     * @param { type } idPartie identifiant de la partie selectionnée
+     * @param { type } idUtilisateur identifiant du futur joueur
+     */
     async accepte_joueur(idPartie,idUtilisateur){
         db = require("./DatabaseConnection.js").createConnection();
         
-        query="INSERT INTO Joueur(idPartie,idUtilisateur) VALUES ('"+idPartie+"','"+idUtilisateur+"')";
+        let query="INSERT INTO Joueur(idPartie,idUtilisateur) VALUES ('"+idPartie+"','"+idUtilisateur+"')";
         console.log(query);
 
         await queryPartie(db,query);
     },
+    /**
+     * Permet de supprimer un joueur de la partie
+     * @param { type } idPartie identifiant de la partie selectionnée
+     * @param { type } idUtilisateur identifiant du joueur à supprimer
+     */
     async supprime_joueur(idPartie,idUtilisateur){
         db = require("./DatabaseConnection.js").createConnection();
         
-        query="DELETE FROM Joueur WHERE idPartie="+idPartie+" AND idUtilisateur="+idUtilisateur;
+        let query="DELETE FROM Joueur WHERE idPartie="+idPartie+" AND idUtilisateur="+idUtilisateur;
         console.log(query);
 
         await queryPartie(db,query);
     },
+    /**
+     * Recupère toutes les caractéristiques associées aux parties
+     */
     async recuperer_caracteristique(){
         db = require("./DatabaseConnection.js").createConnection();
         
-        query="SELECT * FROM Caracteristique WHERE typeCaracteristique='Partie'";
+        let query="SELECT * FROM Caracteristique WHERE typeCaracteristique='Partie'";
         console.log(query);
 
         const allcarac=await queryPartie(db,query);
@@ -125,6 +168,13 @@ module.exports = {
         console.log(donnees);
         return donnees;
     },
+    /**
+     * 
+     * @param { type } input mots-clés recherchées
+     * @param { type } recherche renseigne sur quel déterminant recherché. Peut être : Titre,
+     *          Auteur, Description
+     * @param { Array } carac tableau des caractéristiques de partie recherchées
+     */
     async recherche_partie(input,recherche,carac){
         
         db = require("./DatabaseConnection.js").createConnection();
@@ -171,13 +221,17 @@ module.exports = {
             }
             
         }
-        query=queryInit+queryWhere+caracteristique_recherche+" GROUP BY idPartie "+order;
+        let query=queryInit+queryWhere+caracteristique_recherche+" GROUP BY idPartie "+order;
         console.log(query);
         
         const parties=await queryPartie(db,query);
 
         return await donnees_parties(parties);
     },
+    /**
+     * retourne un objet formatter représentant une partie
+     * @param { type } idPartie identifiant de la partie recherchée
+     */
     affiche_partie(idPartie){
         return donnees_parties([{'idPartie':idPartie}]); 
     },
@@ -186,7 +240,11 @@ module.exports = {
 
 }
 
-
+/**
+ * Fonction qui permet l'execution des requêtes vers la base
+ * @param { Object } db connexion à la base de donnée
+ * @param { type } query requete SQL
+ */
 function queryPartie(db,query){
     
     //db = require("./DatabaseConnection.js").createConnection();
@@ -202,7 +260,15 @@ function queryPartie(db,query){
     });
 }
 
-
+/**
+ * Retourne au format JSON les informations représentant la partie recherchée
+ * @param { type } idPartie identifiant de la partie
+ * @param { Object } infoPartie informations de la partie récupérées suite à la requête 
+ *          sur la base
+ * @param { Object } nbJoueur nombres de joueurs actuelles sur la parties
+ * @param { Object } infoCarac informations sur les caractéristiques de la partie récupérées
+ *          suite à la requête sur la base
+ */
 function formatDonnees(idPartie,infoPartie,nbJoueur,infoCarac){
     
     
@@ -238,6 +304,11 @@ function formatDonnees(idPartie,infoPartie,nbJoueur,infoCarac){
     return donnee;
 }
 
+/**
+ * Mise en forme de la partie recherche de mot-clé pour la requête de la recherche de parties
+ * @param { type } input mots-clés de la recherche de partie 
+ * @param { type } type déterminant de la recherche
+ */
 function traitement_input(input,type){
     output=" ";
     for(i=0;i<input.length;i++){
@@ -247,6 +318,10 @@ function traitement_input(input,type){
     return output;
 }
 
+/**
+ * 
+ * @param { Array } parties liste des parties dont on veut récupérer et formatter les données
+ */
 async function donnees_parties(parties){
 
     db = require("./DatabaseConnection.js").createConnection();
@@ -257,7 +332,7 @@ async function donnees_parties(parties){
         partie=parties[i].idPartie
         console.log("idPartieActuelle="+partie)
 
-        query = "SELECT nomPartie, pseudo, nomSysteme, fuseauHorraire, DescriptionPartie, nomCarte, dateCréationPartie as dateCreationPartie "+
+        let query = "SELECT nomPartie, pseudo, nomSysteme, fuseauHorraire, DescriptionPartie, nomCarte, dateCréationPartie as dateCreationPartie "+
                 "FROM Utilisateur NATURAL JOIN Partie NATURAL JOIN Systeme NATURAL JOIN Carte "+
                 "WHERE idOrganisateur=idUtilisateur AND idPartie="+partie
         console.log(query)
@@ -280,13 +355,16 @@ async function donnees_parties(parties){
     return donnees;
 }
 
-
+/**
+ * Modifie dans la base les caractéristiques liées à une partie. Supprime puis réinsére les
+ * caractéristiques à garder
+ * @param { type } idPartie identifiant de la partie
+ * @param { Array } listeCaracteristique liste des identifiants de caractéristique à garder.
+ *  Si le tableau est vide, alors la fonction supprime toutes les caractéristiques lié à la partie 
+ */
 async function change_caracteristique(idPartie,listeCaracteristique){
     
     db = require("./DatabaseConnection.js").createConnection();
-
-    console.log("la ca vient de change_caracteristique")
-    await queryPartie(db,"SELECT * FROM Partie WHERE idPartie="+idPartie);
 
     let query="DELETE FROM CaracteristiquePartie WHERE idPartie="+idPartie;
     console.log(query);
