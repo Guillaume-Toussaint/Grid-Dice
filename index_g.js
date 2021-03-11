@@ -23,6 +23,8 @@ const port = 8000;
 
 const ConnectionController =  require("./controller/ConnectionController.js");
 const ProfileController = require("./controller/ProfileCOntroller.js");
+const PartieController = require("./controller/PartieController.js");
+
 //connec_control = new ConnectionController();
 
 app.get('/', (req, res, next) => {
@@ -31,6 +33,21 @@ app.get('/', (req, res, next) => {
   username : req.session.pseudo});
 });
 
+//recherche test
+
+app.get('/searchpage',async (req,res,next) => {
+  res.render('recherche.ejs');
+});
+
+app.post('/recherche',async (req,res,next) => {
+  console.log("Body de la requête");
+  console.log(req.body)
+  const parties = await PartieController.recherche_partie(req.body.saisie,req.body.dans,req.body.carac);
+  console.log("after recup parties");
+  console.log(parties);
+  console.log(parties[0].donnee.caracteristiques);
+  res.render('resultat.ejs',{res : parties});
+});
 
 
 
@@ -48,11 +65,13 @@ app.get('/sign_up_page',(req,res,next) => {
   res.render("inscription.ejs");
 });
 
-app.get('/partie/:uuid', (req, res, next) => {
+app.get('/partie/:uuid', async (req, res, next) => {
   //EXEMPLE D'USAGE
-
+  const informations = await PartieController.get_donnees_partie([{idPartie : req.params.uuid}]);
+  console.log("On a les informations de la partie à afficher en détails");
+  console.log(informations);
   //fonction qui récupère les infos d'une parties
-  //res.render("frontend/partie_details.ejs");
+  res.render("detail_partie.ejs");
 });
 
 

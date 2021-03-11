@@ -15,6 +15,7 @@
             <select class="form-select" aria-label="Default select example">
                 <option selected>partie recente</option>
                 <option value="1">partie ancienne</option>
+            </select>
             <select class="form-select" aria-label="Default select example">
                 <option selected>Systeme</option>
                 <option value="1">D&D 4e</option>
@@ -31,13 +32,24 @@
                 <option value="1">Game master</option>
                 <option value="2">description</option>
                 <option value="3">etiquette</option>
-            </select>   
+            </select>
+
+            <% res.forEach(function(partie){
+              %>
             <div>
+
+
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h6 class="card-title">le paladin de ekumul</h5>
-                        <p class="card-text">legend de troi</p>
+                        <h6 class="card-title"><%-partie.donnee.nomPartie %></h5>
+                        <p class="card-text"><%-partie.donnee.nomSysteme %></p>
+
+
+
                         <ul>
+                            <% partie.donnee.caracteristiques.forEach((carac) => { %>
+                              <li> <%= carac.caracteristique %></li>
+                          <%  }); %>
                             <li>RPG</li>
                             <li>Fantasy</li>
                             <li>contenue mature</li>
@@ -46,10 +58,11 @@
                     </div>
                 </div>
 
+
                 <div class="card" style="width: 18rem;">
-                    <h6 class="card-title">Desciption</h6>
-                    <p class="card-text">guerre de trois sang et plus</p>
-                    <button type="button" class="btn btn-primary">Plus de detail</button>
+                    <h6 class="card-title"><%= partie.donnee.descriptionPartie%></h6>
+                    <a href="/partie/<%=partie.idPartie%>"><button type="button" class="btn btn-primary">Plus de détails</button></a>
+                <%  });%>
                 </div>
             </div>
         </div>
