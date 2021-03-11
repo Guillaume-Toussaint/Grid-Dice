@@ -3,37 +3,41 @@
 <html lang="fr" >
     <head>
     <meta charset="utf-8" />
-    <title>le paladin de Ekmul</title>
+    <title><%= infos.donnee.nomPartie%></title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     </head>
     <body>
-        <h2>le paladin Ekmul</h2>
+        <h2><%= infos.donnee.nomPartie%></h2>
 
         <!-- Gauche-->
         <div>
-            <p>Partie cree par: Arleston</p>
+            <p><b>Partie cree par :</b> <%= infos.donnee.nomCreateur %></p>
             <button type="button" class="btn btn-primary">Acceder au profil</button>
 
-            <p>Systeme de jeu la legend de troi</p>
+            <p><b>Systeme de jeu :</b> <%= infos.donnee.nomSysteme%></p>
 
-            <p>horaire de la prochaine partie: 04/01/2021</p>
+            <!--<p>horaire de la prochaine partie: 04/01/2021</p>-->
 
-            <p>Description</p>
+            <p><b>Description</b></p>
             <div>
-                <p>une quete...</p>
+                <p><%= infos.donnee.description%></p>
             </div>
             <p>Caracteristique de la partie</p>
             <ul>
-                <li>Accepte les nouveaux joueurs</li>
-                <li>Fantasy</li>
-                <li>contenue mature</li>
+                <% infos.donnee.caracteristiques.forEach((carac) =>{ %>
+
+
+
+                <li><%= carac.caracteristique%></li>
+
+              <% });  %>
             </ul>
             <button type="button" class="btn btn-primary">Contacter l'organisateur</button>
         </div>
 
-        <!-- Droite-->
+        <!--
         <div>
             <p>Joueurs</p>
             <div class="card" style="width: 18rem;">
@@ -41,11 +45,11 @@
                     <i class="bi bi-x"></i>
                     <h5 class="card-title">Gaetan</h5>
                     <p class="card-text">Paladin</p>
-                    <button type="button" class="btn btn-primary">Envoye un message</button>
+                    <button type="button" class="btn btn-primary">Envoyer un message</button>
                     <button type="button" class="btn btn-primary">Gérer</button>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary">Demander a rejoindre</button>
-        </div>
+            <button type="button" class="btn btn-primary">Demander à rejoindre</button>
+        </div>-->
     </body>
 </html>

@@ -71,7 +71,7 @@ app.get('/partie/:uuid', async (req, res, next) => {
   console.log("On a les informations de la partie à afficher en détails");
   console.log(informations);
   //fonction qui récupère les infos d'une parties
-  res.render("detail_partie.ejs");
+  res.render("detail_partie.ejs",{infos : informations[0]});
 });
 
 
