@@ -41,12 +41,12 @@ module.exports = {
         switch(processus){
             case "Create":
                 query="INSERT INTO Partie (";
-                for(i=0;i<arguments.length;i++){
+                for(let i=0;i<arguments.length;i++){
                     if(i==0) query+=arguments[i].key;
                     else query+=","+arguments[i].key;
                 }
                 query+=") VALUES (";
-                for(i=0;i<arguments.length;i++){
+                for(let i=0;i<arguments.length;i++){
                     if(i==0) query+=arguments[i].value;
                     else query+=","+arguments[i].value;
                 }
@@ -54,7 +54,7 @@ module.exports = {
                 break;
             case "Update":
                 query="UPDATE Partie SET ";
-                for(i=0;i<arguments.length;i++){
+                for(let i=0;i<arguments.length;i++){
                     if(i==0) query+=arguments[i].key+"="+arguments[i].value;
                     else query+=","+arguments[i].key+"="+arguments[i].value;
                 }
@@ -107,7 +107,7 @@ module.exports = {
         const joueurs=await queryPartie(db,query);
 
         let j=[];
-        for(i=0; i<joueurs.length;i++){
+        for(let i=0; i<joueurs.length;i++){
             j.push({"idJoueur": joueurs[i].idUtilisateur,"pseudo":joueurs[i].pseudo});
         }
 
@@ -159,7 +159,7 @@ module.exports = {
         console.log(allcarac);
 
         let donnees=[]
-        for(i=0;i<allcarac.length;i++){
+        for(let i=0;i<allcarac.length;i++){
             donnees.push({'idCaracteristique':allcarac[i].idCaracteristique,
                          'typeCaracteristique':allcarac[i].typeCaracteristique,
                          'valeurCaracteristique':allcarac[i].valeurCaracteristique});
@@ -187,7 +187,7 @@ module.exports = {
         caracteristique_recherche="";
         if(carac != null){
             caracteristique_recherche=" WHERE ("
-            for(i=0;i<carac.length;i++){
+            for(let i=0;i<carac.length;i++){
                 if(i==0) caracteristique_recherche+="valeurCaracteristique='"+carac[i]+"'";
                 else caracteristique_recherche+=" OR valeurCaracteristique='"+carac[i]+"'";
             }
@@ -281,7 +281,7 @@ function formatDonnees(idPartie,infoPartie,nbJoueur,infoCarac){
     else console.log("Wesh mec, ya trop de nombre de joueurs pour une seule partie ! ")
 
     let caracteristiques=[];
-    for(i=0;i<infoCarac.length;i++){
+    for(let i=0;i<infoCarac.length;i++){
         caracteristiques.push({'caracteristique':infoCarac[i].valeurCaracteristique});
     }
 
@@ -312,7 +312,7 @@ function formatDonnees(idPartie,infoPartie,nbJoueur,infoCarac){
  */
 function traitement_input(input,type){
     output=" ";
-    for(i=0;i<input.length;i++){
+    for(let i=0;i<input.length;i++){
         if(i==0) output+=type+" LIKE '%"+input[i]+"%'";
         else output+=" OR "+type+" LIKE '%"+input[i]+"%'";
     }
@@ -381,7 +381,7 @@ async function change_caracteristique(idPartie,listeCaracteristique){
     console.log(query);
     await queryPartie(db,query);
 
-    for(i=0;i<listeCaracteristique.length;i++){
+    for(let i=0;i<listeCaracteristique.length;i++){
         query="INSERT INTO CaracteristiquePartie (idPartie,idCaracteristique) VALUES ("+idPartie+","+
                 listeCaracteristique[i]+")";
         console.log(query);
