@@ -50,11 +50,8 @@
                             <% partie.donnee.caracteristiques.forEach((carac) => { %>
                               <li> <%= carac.caracteristique %></li>
                           <%  }); %>
-                            <li>RPG</li>
-                            <li>Fantasy</li>
-                            <li>contenue mature</li>
                         </ul>
-                        <p>3/4 joueurs</p>
+                        <p> <%= partie.donnee.nombreJoueur %> joueur(s)</p>
                     </div>
                 </div>
 

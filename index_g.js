@@ -24,6 +24,11 @@ const port = 8000;
 const ConnectionController =  require("./controller/ConnectionController.js");
 const ProfileController = require("./controller/ProfileCOntroller.js");
 const PartieController = require("./controller/PartieController.js");
+const GameRecommender = require("./recommender/GameRecommender.js");
+
+
+//************ DECOMMENTER POUR TESTER LES RECOMMENDATIONS AVEC IDUSER = 1 | Ne pas laisser en prod
+//GameRecommender.recommend_to(1);
 
 //connec_control = new ConnectionController();
 
