@@ -1,60 +1,91 @@
 <!DOCTYPE html>
 
 <html lang="fr" >
-    <head>
+<head>
     <meta charset="utf-8" />
     <title>Creation de Partie</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    </head>
-    <body>
-        <!-- Navbar-->
-        <%- include('navbar.php'); %>
-        <form method="get" action="index.php" autocomplete="on">
-            <div class="form-group col-6 mx-auto">
-                <input type="text"  class="form-control" name="Alim" placeholder="Nom de la Partie">
-            </div>
-        <!-- Gauche-->
-            <div>
-                <label  for="Systeme">Systeme du jeu : </label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>D&D 5e</option>
-                    <option value="1">D&D 4e</option>
-                    <option value="2">CyberPunk</option>
-                    <option value="3">Personalisé</option>
-                </select>
-                <div class="input-group">
-                    <p>Desciption</p>
-                    <textarea class="form-control" aria-label="With textarea"></textarea>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+            <!-- Navbar Profil/Contact-->
+            <nav class="navbar">
+                <div class="navbar-nav">
+                    <a class="nav-link" aria-current="page" href="#" style="color: #ffff00">Profil</a>
+                    <a class="nav-link" href="contact.ejs" style="color: yellow">Contacts</a>
                 </div>
-                <div class="form-check">
-                    <p>Caracteristique de la partie : </p>
-                        <p>genre</p>
-                        <input type="checkbox" name="option" id = "fantasy"value="">
-                        <label class="form-ckeck-label" for="fantasy">fantasy </label>
-                        <input type="checkbox" name="option" id="Sci-fi"value="">
-                        <label class="form-ckeck-label" for="Sci-fi">Sci-fi </label>
-                        <input type="checkbox" name="option" id="CyberPunk"value="">
-                        <label class="form-ckeck-label" for="CyberPunk">"CyberPunk</label>
-                </div>
-                <input type="submit" class="btn btn-primary" name="submit" value="Enregistrer">
-                <a class="btn btn-primary" href="index.php" role="button">Annuler</a>  
-            </div>
-        </form>
-        <!-- Droite-->
-        <div>
-            <p>Joueurs</p>
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <i class="bi bi-x"></i>
-                    <h5 class="card-title">Gaetan</h5>
-                    <p class="card-text">Paladin</p>
-                    <button type="button" class="btn btn-primary">Envoye un message</button>
-                    <button type="button" class="btn btn-primary">Gérer</button>
-                </div>
-            </div>
-            <button type="button" class="btn btn-primary">inviter un ami</button>
+            </nav>
+
         </div>
-    </body>
+
+        <div class="col-xl">
+            <div class="row">
+                <div class="col-md">
+
+                    <div class="card" style="width: 18rem; background-color: grey; border-radius: 12px; width: 50rem">
+                        <div class="card-body">
+                            <!-- Gauche-->
+                            <label  for="Systeme">Systeme du jeu : </label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>D&D 5e</option>
+                                <option value="1">D&D 4e</option>
+                                <option value="2">CyberPunk</option>
+                                <option value="3">Personalisé</option>
+                            </select>
+                            <div class="input-group">
+                                <p>Desciption</p>
+                                <textarea class="form-control" aria-label="With textarea"></textarea>
+                            </div>
+                            <div class="form-check">
+                                <p>Caracteristique de la partie : </p>
+                                <p>genre</p>
+                                <input type="checkbox" name="option" id = "fantasy"value="">
+                                <label class="form-ckeck-label" for="fantasy">fantasy </label>
+                                <input type="checkbox" name="option" id="Sci-fi"value="">
+                                <label class="form-ckeck-label" for="Sci-fi">Sci-fi </label>
+                                <input type="checkbox" name="option" id="CyberPunk"value="">
+                                <label class="form-ckeck-label" for="CyberPunk">"CyberPunk</label>
+                            </div>
+                            <input type="submit" class="btn-agree" name="submit" value="Enregistrer">
+                            <a class="btn-disagree" href="index.php" role="button">Annuler</a>
+                        </div>
+                    </div>
+                </div>
+                </form>
+
+            </div>
+
+            <div class="col-md>
+
+				<!-- Droite-->
+            <p>Joueurs</p>
+            <div class="card" style="background-color: grey; border-radius: 12px; width: 12rem">
+            <div class="card-body">
+                <h5 class="card-title">Gaetan</h5>
+                <p class="card-text">Paladin</p>
+                <button type="button" class="btn-contact">Envoye un message</button>
+                <button type="button" class="btn-contact">Gérer</button>
+                <button type="button" class="btn-contact" style="width: 10rem;">inviter un ami</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+</div>
+</div>
+</body>
 </html>
