@@ -95,7 +95,7 @@ app.get('/profile/:uuid', async (req, res, next) => {
   console.log("Infos récupérées Profil");
   let preference = await ProfileController.get_preference(req.params.uuid);
   //res.redirect("/");
-  console.log(infos)
+  console.log(preference)
   res.render("profil.ejs",{infos : infos, preference: preference});
 });
 

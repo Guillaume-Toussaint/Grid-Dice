@@ -26,7 +26,7 @@ module.exports = {
     let mysql = require("mysql");
     let db = require("./DatabaseConnection.js").createConnection();
 
-    let query = "SELECT * FROM Utilisateur NATURAL JOIN CaracteristiqueJoueur NATURAL JOIN Caracteristique where idUtilisateur= ?";
+    let query = "SELECT typePreference, Valeur FROM Utilisateur NATURAL JOIN PreferenceUtilisateur NATURAL JOIN Preference where idUtilisateur= ?";
 
     console.log("Query : "+query);
 
@@ -37,8 +37,8 @@ module.exports = {
                     reject(err.message);
                 }
                 console.log("Resultat function get_preference:")
-                console.log(result[0]); 
-                resolve(result[0]);
+                console.log(result); 
+                resolve(result);
                 });
               }
             );
