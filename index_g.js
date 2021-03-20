@@ -9,6 +9,9 @@ const session = require('express-session')
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.static("views"));
+app.use(ignoreFavicon);
+
 app.use(bodyParser.json());
 app.use(session({
   secret : "Hello world",
@@ -17,7 +20,12 @@ app.use(session({
   cookie: { secure: false }
 }))
 
-
+function ignoreFavicon(req, res, next) {
+  if (req.originalUrl.includes('favicon.ico')) {
+    res.status(204).end()
+  }
+  next();
+}
 const port = 8000;
 
 

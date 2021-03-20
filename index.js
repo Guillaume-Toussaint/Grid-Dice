@@ -200,6 +200,7 @@ app.delete('/delete/game/:uuid', (req, res, next) => {
 app.delete('/delete/character/:uuid', (req, res, next) => {
 
 });
+app.use(express.static(__dirname + '/public'));
 
 module.exports = app;
 
