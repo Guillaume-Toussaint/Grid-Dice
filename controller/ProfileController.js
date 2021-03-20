@@ -22,7 +22,8 @@ module.exports = {
   },
 
 
-  get_preference(iduser){
+  async get_preference(iduser){
+    return await donnees_prefrence(iduser);
     let mysql = require("mysql");
     let db = require("./DatabaseConnection.js").createConnection();
 
@@ -259,3 +260,68 @@ module.exports = {
 
 
 };
+
+/**
+ * Fonction qui permet l'execution des requêtes vers la base
+ * @param { Object } db connexion à la base de donnée
+ * @param { type } query requete SQL
+ */
+
+ async function donnees_prefrence(user){
+
+  db = require("./DatabaseConnection.js").createConnection();
+
+  let donnees=[];
+  console.log("DONNES PREFRENCE FUNCTION");
+
+  let query = 'SELECT Valeur FROM Utilisateur NATURAL JOIN PreferenceUtilisateur NATURAL JOIN Preference where idUtilisateur='+user+' and typePreference="Niveau"'
+  console.log(query);
+  const niveau= await queryProfil(db,query);
+
+
+  query = 'SELECT Valeur FROM Utilisateur NATURAL JOIN PreferenceUtilisateur NATURAL JOIN Preference where idUtilisateur='+user+' and typePreference="Genre"'
+  console.log(query);
+  const genre= await queryProfil(db,query);
+
+
+  query = 'SELECT Valeur FROM Utilisateur NATURAL JOIN PreferenceUtilisateur NATURAL JOIN Preference where idUtilisateur='+user+' and typePreference="Systeme"'
+  console.log(query);
+  const systeme= await queryProfil(db,query);
+
+
+  query = 'SELECT Valeur FROM Utilisateur NATURAL JOIN PreferenceUtilisateur NATURAL JOIN Preference where idUtilisateur='+user+' and typePreference="Meta"'
+  console.log(query);
+  const meta= await queryProfil(db,query);
+
+
+  donnees.push(niveau,genre,systeme,meta);
+  console.log(donnees);
+  return donnees;
+}
+function queryProfil(db,query){
+
+  //db = require("./DatabaseConnection.js").createConnection();
+
+  return new Promise( (resolve,reject) => {
+      db.query(query, (err,result) => {
+          if (err) reject(err.message);
+          else if(result){
+              console.log(result);
+              resolve(result)
+          }
+      })
+  });
+}
+function formatD(niveau,genre,systeme,meta){
+  let donnee={
+        'niveau':infoPartie.nomPartie,
+        'nomSysteme': infoPartie.nomSysteme,
+        'pseudoCreateur': infoPartie.pseudo,
+        'nomCarte': infoPartie.nomCarte,
+        'descriptionPartie': infoPartie.DescriptionPartie,
+        'nombreJoueur': nbJoueur.infoNbJoueur,
+        'dateCreationPartie':infoPartie.dateCreationPartie,
+        caracteristiques
+  };
+}
+

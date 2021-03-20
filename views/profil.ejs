@@ -45,15 +45,21 @@
                     <div>
                         <p>Niveu de jeu</p>
                         <ul>
-                            <li><%= preference[0].Valeur%></li>
+
+                            <% preference[0].forEach((element) =>{ %>
+                            <li><%= element.Valeur%></li>
+                            <% });  %>
+
                         </ul>
                     </div>
                     <div>
-                        <p>genre</p>
+                        <p>Genre</p>
                         <ul>
-                            <li><%= preference[1].Valeur%></li>
-                            <li><%= preference[2].Valeur%></li>
-                            
+
+                            <% preference[1].forEach((element) =>{ %>
+                            <li><%= element.Valeur%></li>
+                            <% });  %>
+
                         </ul>
                     </div>
                 </div>
@@ -61,13 +67,21 @@
                     <div>
                         <p>Systeme de preference</p>
                         <ul>
-                            <li><%= preference[3].Valeur%></li>
-                            <li><%= preference[4].Valeur%></li>
+
+                            <% preference[2].forEach((element) =>{ %>
+                            <li><%= element.Valeur%></li>
+                            <% });  %>
+
                         </ul>
                     </div>
                     <div>
                         <p>Meta</p>
                         <ul>
+
+                            <% preference[3].forEach((element) =>{ %>
+                            <li><%= element.Valeur%></li>
+                            <% });  %>
+
                         </ul>
                     </div>
                 </div>
