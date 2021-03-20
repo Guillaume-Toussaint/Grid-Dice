@@ -8,9 +8,9 @@
 }
 
 .nav-link{
-    background-color: yellow ;
+    background-color: black ;
     border-radius: 12px ;
-    color: white ;
+    color: yellow ;
     margin: 2px;
     padding: 4px;
     text-align: center;
@@ -43,6 +43,15 @@
     text-align: center;
 }
 
+.btn-contact{
+    background-color: black ;
+    border-radius: 12px ;
+    color: yellow ;
+    margin: 2px;
+    padding: 4px;
+    text-align: center;
+}
+
 .progress-bar{
     background-color: orange;
 }
@@ -51,6 +60,7 @@
     background-color: white;
     border-radius: 12px;
     width: 50%;
+    margin: 3px;
 }
 
 .form-select{
