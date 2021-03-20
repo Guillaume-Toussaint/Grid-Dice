@@ -14,12 +14,38 @@ module.exports = {
                   if (err) {
                     reject(err.message);
                 }
-                console.log(result[0]);
+                console.log(result[0]); 
                 resolve(result[0]);
                 });
               }
             );
   },
+
+
+  get_preference(iduser){
+    let mysql = require("mysql");
+    let db = require("./DatabaseConnection.js").createConnection();
+
+    let query = "SELECT * FROM Utilisateur NATURAL JOIN CaracteristiqueJoueur NATURAL JOIN Caracteristique where idUtilisateur= ?";
+
+    console.log("Query : "+query);
+
+    return  new Promise(
+            (resolve,reject) => {
+              db.query(query, [iduser],function (err, result) {
+                  if (err) {
+                    reject(err.message);
+                }
+                console.log("Resultat function get_preference:")
+                console.log(result[0]); 
+                resolve(result[0]);
+                });
+              }
+            );
+  },  
+
+
+
   get_profile_info_by_pseudo(pseudo){
     let mysql = require("mysql");
     let db = require("./DatabaseConnection.js").createConnection();
@@ -225,7 +251,7 @@ module.exports = {
 
 
     }
-
+  
 
 
 

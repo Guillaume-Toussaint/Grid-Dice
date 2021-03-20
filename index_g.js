@@ -70,6 +70,7 @@ app.get('/sign_up_page',(req,res,next) => {
   res.render("inscription.ejs");
 });
 
+
 app.get('/partie/:uuid', async (req, res, next) => {
   //EXEMPLE D'USAGE
   const informations = await PartieController.get_donnees_partie([{idPartie : req.params.uuid}]);
@@ -83,11 +84,11 @@ app.get('/partie/:uuid', async (req, res, next) => {
 app.get('/profile/:uuid', async (req, res, next) => {
 
   let infos = await ProfileController.get_profile_info(req.params.uuid);
-  console.log("Infos récupérées et retour dans index");
-
-  res.redirect("/");
-
-  //res.render("acceuil.ejs");
+  console.log("Infos récupérées Profil");
+  let preference = await ProfileController.get_preference(req.params.uuid);
+  //res.redirect("/");
+  console.log(infos)
+  res.render("profil.ejs",{infos : infos, preference: preference});
 });
 
 app.get('/character/:uuid', (req, res, next) => {
