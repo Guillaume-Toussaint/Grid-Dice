@@ -8,6 +8,7 @@ const session = require('express-session')
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("views"));
 
 app.use(bodyParser.json());
 app.use(session({
