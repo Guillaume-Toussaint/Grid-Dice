@@ -12,8 +12,10 @@ module.exports = {
             (resolve,reject) => {
               db.query(query, [iduser],function (err, result) {
                   if (err) {
+                    console.log(iduser);
                     reject(err.message);
                 }
+                console.log(result);
                 console.log(result[0]); 
                 resolve(result[0]);
                 });
@@ -24,25 +26,6 @@ module.exports = {
 
   async get_preference(iduser){
     return await donnees_prefrence(iduser);
-    let mysql = require("mysql");
-    let db = require("./DatabaseConnection.js").createConnection();
-
-    let query = "SELECT typePreference, Valeur FROM Utilisateur NATURAL JOIN PreferenceUtilisateur NATURAL JOIN Preference where idUtilisateur= ?";
-
-    console.log("Query : "+query);
-
-    return  new Promise(
-            (resolve,reject) => {
-              db.query(query, [iduser],function (err, result) {
-                  if (err) {
-                    reject(err.message);
-                }
-                console.log("Resultat function get_preference:")
-                console.log(result); 
-                resolve(result);
-                });
-              }
-            );
   },  
 
 

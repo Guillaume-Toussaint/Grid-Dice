@@ -42,8 +42,7 @@ const GameRecommender = require("./recommender/GameRecommender.js");
 
 app.get('/', (req, res, next) => {
   console.log(req.session.pseudo);
-  res.render("acceuil.ejs",{connected : req.session.connected,
-  username : req.session.pseudo});
+  res.render("acceuil.ejs",{session : req.session});
 });
 
 //recherche test
@@ -79,24 +78,31 @@ app.get('/sign_up_page',(req,res,next) => {
 });
 
 
-app.get('/partie/:uuid', async (req, res, next) => {
+app.get('/partie', async (req, res, next) => {
   //EXEMPLE D'USAGE
-  const informations = await PartieController.get_donnees_partie([{idPartie : req.params.uuid}]);
+  if(req.session.connected){
+  const informations = await PartieController.get_donnees_partie([{idPartie : req.session.idUser}]);
   console.log("On a les informations de la partie à afficher en détails");
   console.log(informations);
   //fonction qui récupère les infos d'une parties
-  res.render("detail_partie.ejs",{infos : informations[0]});
+  res.render("detail_partie.ejs",{infos : informations[0], session : req.session});
+} else{
+  res.redirect("/login_page");
+}
 });
 
 
-app.get('/profile/:uuid', async (req, res, next) => {
+app.get('/profile', async (req, res, next) => {
 
-  let infos = await ProfileController.get_profile_info(req.params.uuid);
+  if(req.session.connected){
+  let infos = await ProfileController.get_profile_info(req.session.idUser);
   console.log("Infos récupérées Profil");
-  let preference = await ProfileController.get_preference(req.params.uuid);
-  //res.redirect("/");
-  console.log(preference)
-  res.render("profil.ejs",{infos : infos, preference: preference});
+  let preference = await ProfileController.get_preference(req.session.idUser);
+  console.log(preference);
+  res.render("profil.ejs",{infos : infos, preference: preference, session : req.session });
+  } else{
+    res.redirect("/login_page");
+  }
 });
 
 app.get('/character/:uuid', (req, res, next) => {
