@@ -3,39 +3,39 @@ module.exports = {
 
   async recommend_to(idUser){
     const prefs = await get_user_preferences(idUser);
-    console.log("Préférences de l'user : ");
-    console.log(prefs);
+    //console.log("Préférences de l'user : ");
+    //console.log(prefs);
 
     const games_caracs = await get_games_caracs();
-    console.log("Ensemble de caracs des jeux");
-    console.log(games_caracs);
+    //console.log("Ensemble de caracs des jeux");
+    //console.log(games_caracs);
 
 
       let parties_reco = [];
-      //console.log(ensembrePrefs);
-      console.log("On calcule les indexs");
+      ////console.log(ensembrePrefs);
+      //console.log("On calcule les indexs");
       for(s in games_caracs){
-        console.log('Index entre les prefs utilisateur et la partie '+s);
+        //console.log('Index entre les prefs utilisateur et la partie '+s);
         const index = index_jacquard(prefs,games_caracs[s]);
-        console.log(index);
+        //console.log(index);
         parties_reco.push([s,index]);
       }
-      console.log("Liste des parties avec index avant tri");
-      console.log(parties_reco);
+      //console.log("Liste des parties avec index avant tri");
+      //console.log(parties_reco);
 
 
       parties_reco.sort((e1,e2) => {
         return (e2[1] - e1[1]); // Tri décroissant
       });
-      console.log("Liste des parties avec index après tri");
-      console.log(parties_reco);//Tri accompli
+      //console.log("Liste des parties avec index après tri");
+      //console.log(parties_reco);//Tri accompli
 
 
-      console.log("On passe à la récup des données");
+      //console.log("On passe à la récup des données");
       //Liste des id à récup
       /*const listeIds = parties_reco.map(e => {
         return {idPartie : parseInt(e[0],10)}});
-      console.log(listeIds);
+      //console.log(listeIds);
      const pc = require("../controller/PartieController");
 
 
@@ -43,14 +43,14 @@ module.exports = {
      const pc = require("../controller/PartieController");
      let donneesPartiesReco = [];
      for(let p=0; p<parties_reco.length;p++){
-       console.log(p);
+       //console.log(p);
        donneesPartiesReco.push({idPartie : parties_reco[p][0]});
      }
 
      donneesPartiesReco = await pc.get_donnees_partie(donneesPartiesReco);
-     console.log(donneesPartiesReco);
+     //console.log(donneesPartiesReco);
 
-     return donneesPartiesReco;
+     return donneesPartiesReco.slice(0,5);
   }
 
 
@@ -63,7 +63,7 @@ function get_user_preferences(idUser){
       db.query(query, [idUser],(err,result) => {
           if (err) reject(err.message);
           else if(result){
-              //console.log(result);
+              ////console.log(result);
               let ensemblePrefs  = new Set();
               result.forEach((e) =>{
                 ensemblePrefs.add(e.idCaracteristique);
@@ -84,7 +84,7 @@ function get_games_caracs(){
         db.query(query,(err,result) => {
             if (err) reject(err.message);
             else if(result){
-                //console.log(result);
+                ////console.log(result);
                 let caracs  = {};
                 result.forEach((e) =>{
                   if(!caracs[e.idPartie]){

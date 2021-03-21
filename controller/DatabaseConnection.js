@@ -1,8 +1,13 @@
 module.exports = {
 
+  /**
+   * createConnection - Crée un object cde connexion avec la base de données
+   *
+   * @return {type}  description
+   */
   createConnection(){
 
-    
+
     let  con = require("mysql").createConnection({
       host: "mysql-pware.alwaysdata.net",
       user: "pware_userprojet",

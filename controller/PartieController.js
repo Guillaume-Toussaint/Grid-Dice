@@ -67,7 +67,7 @@ module.exports = {
         }
 
 
-        console.log("query : "+query);
+        //console.log("query : "+query);
 
         let res=await queryPartie(db,query);
         if(res.insertId!=0) idPartie=res.insertId;
@@ -84,11 +84,11 @@ module.exports = {
 
 
         let query = "SELECT idPartie FROM Joueur WHERE idUtilisateur="+idUtilisateur;
-        console.log("query: "+query)
+        //console.log("query: "+query)
 
         const parties= await queryPartie(db,query);
-        console.log(parties[0]);
-        console.log("nbPartie: "+parties.length);
+        //console.log(parties[0]);
+        //console.log("nbPartie: "+parties.length);
 
         return donnees_parties(parties);
 
@@ -102,7 +102,7 @@ module.exports = {
 
         let query="SELECT idUtilisateur, pseudo FROM Joueur NATURAL JOIN Utilisateur WHERE idPartie = "+
             idPartie;
-        console.log(query);
+        //console.log(query);
 
         const joueurs=await queryPartie(db,query);
 
@@ -116,7 +116,7 @@ module.exports = {
             "joueurs":j
         };
 
-        console.log(donnees)
+        //console.log(donnees)
         return donnees;
 
     },
@@ -129,7 +129,7 @@ module.exports = {
         db = require("./DatabaseConnection.js").createConnection();
 
         let query="INSERT INTO Joueur(idPartie,idUtilisateur) VALUES ('"+idPartie+"','"+idUtilisateur+"')";
-        console.log(query);
+        //console.log(query);
 
         await queryPartie(db,query);
     },
@@ -142,7 +142,7 @@ module.exports = {
         db = require("./DatabaseConnection.js").createConnection();
 
         let query="DELETE FROM Joueur WHERE idPartie="+idPartie+" AND idUtilisateur="+idUtilisateur;
-        console.log(query);
+        //console.log(query);
 
         await queryPartie(db,query);
     },
@@ -153,10 +153,10 @@ module.exports = {
         db = require("./DatabaseConnection.js").createConnection();
 
         let query="SELECT * FROM Caracteristique WHERE typeCaracteristique='Partie'";
-        console.log(query);
+        //console.log(query);
 
         const allcarac=await queryPartie(db,query);
-        console.log(allcarac);
+        //console.log(allcarac);
 
         let donnees=[]
         for(let i=0;i<allcarac.length;i++){
@@ -165,7 +165,7 @@ module.exports = {
                          'valeurCaracteristique':allcarac[i].valeurCaracteristique});
         }
 
-        console.log(donnees);
+        //console.log(donnees);
         return donnees;
     },
     /**
@@ -182,7 +182,7 @@ module.exports = {
         queryInit="SELECT idPartie FROM Utilisateur JOIN Partie on Partie.idOrganisateur = Utilisateur.idUtilisateur  ";
 
 
-        //console.log("initialisation: "+queryInit);
+        ////console.log("initialisation: "+queryInit);
 
         caracteristique_recherche="";
         if(carac != null){
@@ -194,7 +194,7 @@ module.exports = {
             caracteristique_recherche+=")"
         }
 
-        //console.log("caracteristique")
+        ////console.log("caracteristique")
 
         queryWhere="";
         order="";
@@ -203,28 +203,28 @@ module.exports = {
             switch(recherche){
                 case 'Titre':
                     queryWhere=" AND ("+traitement_input(mots_cle,"nomPartie")+")";
-                    console.log(queryWhere);
+                    //console.log(queryWhere);
                     order=" ORDER BY nomPartie";
                     break;
                 case 'Auteur':
                     queryWhere=" AND ("+traitement_input(mots_cle,"pseudo")+")";
-                    console.log(queryWhere);
+                    //console.log(queryWhere);
                     order=" ORDER BY pseudo";
                     break;
                 case 'Description':
                     queryWhere=" AND ("+traitement_input(mots_cle,"DescriptionPartie")+")";
-                    console.log(queryWhere);
+                    //console.log(queryWhere);
                     order=" ORDER BY DescriptionPartie";
                     break;
-                default: console.log("Wesh mec, ca existe comme type de recherche");
+                default: //console.log("Wesh mec, ca existe comme type de recherche");
             }
 
         }
         let query=queryInit+queryWhere+caracteristique_recherche+" GROUP BY idPartie "+order;
-        console.log("Query qui s'execute avant donnees_partie : "+query);
+        //console.log("Query qui s'execute avant donnees_partie : "+query);
 
         const parties=await queryPartie(db,query);
-        //console.log(parties);
+        ////console.log(parties);
         return await donnees_parties(parties);
     },
     /**
@@ -254,7 +254,7 @@ function queryPartie(db,query){
         db.query(query, (err,result) => {
             if (err) reject(err.message);
             else if(result){
-                console.log(result);
+                //console.log(result);
                 resolve(result)
             }
         })
@@ -275,17 +275,17 @@ function formatDonnees(idPartie,infoPartie,nbJoueur,infoCarac){
 
 
     if(infoPartie.length == 1) infoPartie=infoPartie[0];
-    else console.log("Wesh mec, ya trop d'info pour une seule partie ! ")
+    else //console.log("Wesh mec, ya trop d'info pour une seule partie ! ")
 
     if(nbJoueur.length == 1) nbJoueur=nbJoueur[0];
-    else console.log("Wesh mec, ya trop de nombre de joueurs pour une seule partie ! ")
+    else //console.log("Wesh mec, ya trop de nombre de joueurs pour une seule partie ! ")
 
     let caracteristiques=[];
     for(let i=0;i<infoCarac.length;i++){
         caracteristiques.push({'caracteristique':infoCarac[i].valeurCaracteristique});
     }
 
-    console.log(caracteristiques)
+    //console.log(caracteristiques)
 
     let donnee={
         'idPartie':idPartie,
@@ -301,7 +301,7 @@ function formatDonnees(idPartie,infoPartie,nbJoueur,infoCarac){
         }
     };
 
-    console.log(donnee)
+    //console.log(donnee)
     return donnee;
 }
 
@@ -328,41 +328,41 @@ function traitement_input(input,type){
     db = require("./DatabaseConnection.js").createConnection();
 
     let donnees=[];
-    console.log("TYPE PARTIES");
-    console.log(parties);
-    console.log("taille");
-    console.log(parties.length);
+    //console.log("TYPE PARTIES");
+    //console.log(parties);
+    //console.log("taille");
+    //console.log(parties.length);
     for(let i=0;i<parties.length;i++){ // ça c'est une erreur meta : perdre deux heures parce que le mot-clé let a été oublié >:(
     //parties.forEach(async (partie) => {
 
-    console.log("i : "+i);
+    //console.log("i : "+i);
 
         const idpartie=parties[i].idPartie;;
-        console.log("idPartieActuelle="+idpartie)
+        //console.log("idPartieActuelle="+idpartie)
 
         let query = "SELECT nomPartie, pseudo, nomSysteme, fuseauHorraire, DescriptionPartie, nomCarte, dateCréationPartie as dateCreationPartie "+
                 "FROM Utilisateur NATURAL JOIN Partie NATURAL JOIN Systeme NATURAL JOIN Carte "+
                 "WHERE idOrganisateur=idUtilisateur AND idPartie="+idpartie;
-        console.log(query);
+        //console.log(query);
         const infoPartie= await queryPartie(db,query);
 
 
         query="SELECT count(idUtilisateur) as infoNbJoueur FROM Joueur WHERE idPartie="+idpartie;
-        console.log(query);
+        //console.log(query);
         const nbJoueur= await queryPartie(db,query);
 
 
         query = "SELECT valeurCaracteristique FROM CaracteristiquePartie NATURAL JOIN Caracteristique WHERE idPartie="+idpartie;
-        console.log(query);
+        //console.log(query);
         const infoCarac= await queryPartie(db,query);
 
 
         donnees.push(formatDonnees(idpartie,infoPartie,nbJoueur,infoCarac));
-        console.log("ENDLINE FOREACH");
+        //console.log("ENDLINE FOREACH");
     //}));
   }
-    console.log("ON FINIT LE FOREACH");
-    console.log(donnees);
+    //console.log("ON FINIT LE FOREACH");
+    //console.log(donnees);
     return donnees;
 }
 
@@ -378,13 +378,13 @@ async function change_caracteristique(idPartie,listeCaracteristique){
     db = require("./DatabaseConnection.js").createConnection();
 
     let query="DELETE FROM CaracteristiquePartie WHERE idPartie="+idPartie;
-    console.log(query);
+    //console.log(query);
     await queryPartie(db,query);
 
     for(let i=0;i<listeCaracteristique.length;i++){
         query="INSERT INTO CaracteristiquePartie (idPartie,idCaracteristique) VALUES ("+idPartie+","+
                 listeCaracteristique[i]+")";
-        console.log(query);
+        //console.log(query);
         await queryPartie(db,query);
     }
 

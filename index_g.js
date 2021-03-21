@@ -41,7 +41,7 @@ const GameRecommender = require("./recommender/GameRecommender.js");
 //connec_control = new ConnectionController();
 
 app.get('/', (req, res, next) => {
-  console.log(req.session.pseudo);
+  //console.log(req.session.pseudo);
   res.render("acceuil.ejs",{session : req.session});
 });
 
@@ -52,12 +52,12 @@ app.get('/searchpage',async (req,res,next) => {
 });
 
 app.post('/recherche',async (req,res,next) => {
-  console.log("Body de la requête");
-  console.log(req.body)
+  //console.log("Body de la requête");
+  //console.log(req.body)
   const parties = await PartieController.recherche_partie(req.body.saisie,req.body.dans,req.body.carac);
-  console.log("after recup parties");
-  console.log(parties);
-  console.log(parties[0].donnee.caracteristiques);
+  //console.log("after recup parties");
+  //console.log(parties);
+  //console.log(parties[0].donnee.caracteristiques);
   res.render('resultat.ejs',{res : parties});
 });
 
@@ -82,8 +82,8 @@ app.get('/partie', async (req, res, next) => {
   //EXEMPLE D'USAGE
   if(req.session.connected){
   const informations = await PartieController.get_donnees_partie([{idPartie : req.session.idUser}]);
-  console.log("On a les informations de la partie à afficher en détails");
-  console.log(informations);
+  //console.log("On a les informations de la partie à afficher en détails");
+  //console.log(informations);
   //fonction qui récupère les infos d'une parties
   res.render("detail_partie.ejs",{infos : informations[0], session : req.session});
 } else{
@@ -96,9 +96,9 @@ app.get('/profile', async (req, res, next) => {
 
   if(req.session.connected){
   let infos = await ProfileController.get_profile_info(req.session.idUser);
-  console.log("Infos récupérées Profil");
+  //console.log("Infos récupérées Profil");
   let preference = await ProfileController.get_preference(req.session.idUser);
-  console.log(preference);
+  //console.log(preference);
   res.render("profil.ejs",{infos : infos, preference: preference, session : req.session });
   } else{
     res.redirect("/login_page");
@@ -114,6 +114,13 @@ app.get('/search/:criteres', (req, res, next) => {
   res.render("frontend/acceuil.ejs");
 });
 
+app.get("/flux",async (req,res)=>{
+  const parties = await GameRecommender.recommend_to(req.session.id);
+
+
+  res.render("flux.ejs",{res : parties});
+});
+
 
 app.get('/contacts/', async (req, res, next) => {
   //let test = 1;//test, à changer par l'id utilisateur contenu dans le token
@@ -124,9 +131,9 @@ app.get('/contacts/', async (req, res, next) => {
 });
 
 app.get('/search/contact/:pseudo', async (req, res, next) => {
-  console.log("Req : "+req.params.pseudo);
+  //console.log("Req : "+req.params.pseudo);
   const exists = await ProfileController.account_exists(req.params.pseudo);
-  console.log("Account exist : "+exists);
+  //console.log("Account exist : "+exists);
   if(exists){
     res.sendStatus(200);
   }else{
@@ -150,23 +157,23 @@ app.get("/disconnect",(req,res)=>{
 
 
 app.post('/new/game', (req, res, next) => {
-  console.log(req.body);
+  //console.log(req.body);
   res.status(201).json({
     message: 'Objet créé !'
   });
 });
 
 app.post('/new/character', (req, res, next) => {
-  console.log(req.body);
+  //console.log(req.body);
   res.status(201).json({
     message: 'Objet créé !'
   });
 });
 
 app.post('/new/contact', async (req, res, next) => {
-  console.log("Ajout d'un contact");
-  console.log("on enregistre")
-  console.log(req.body);
+  //console.log("Ajout d'un contact");
+  //console.log("on enregistre")
+  //console.log(req.body);
   const other = await ProfileController.get_profile_info_by_pseudo(req.body.nom);
   const reussite = await ProfileController.addContact(req.session.idUser,other.idUtilisateur);
   if(reussite){
@@ -193,7 +200,7 @@ app.post('/accept/invite', async (req, res, next) => {
 
 
 app.post('/new/profile', (req, res, next) => {
-  console.log(req.body);
+  //console.log(req.body);
   res.status(201).json({
     message: 'Objet créé !'
   });
@@ -206,8 +213,8 @@ app.post('/new/profile', (req, res, next) => {
 
 
 app.post("/connect/", async (req, res, next) => {
-  //console.log(req.body);
-  //console.log("Contenu : "+contenu);
+  ////console.log(req.body);
+  ////console.log("Contenu : "+contenu);
   const user =  await ConnectionController.sign_in(req.body.username,req.body.password);
 
 
@@ -215,7 +222,7 @@ app.post("/connect/", async (req, res, next) => {
       req.session.idUser = user.idUtilisateur;
       req.session.pseudo = user.pseudo;
       req.session.connected = true;
-      //console.log("Session mise en place");
+      ////console.log("Session mise en place");
       res.status(200).redirect('/');
     }else{//Problème à la connexion, changer après
       res.status(403).send("Impossible de vous connecter avec ces identifiants");
@@ -223,7 +230,7 @@ app.post("/connect/", async (req, res, next) => {
     }
 
 
-/*  console.log("Promise : "+promise);
+/*  //console.log("Promise : "+promise);
   res.redirect('/');*/
 });
 
@@ -233,12 +240,12 @@ app.post("/connect/", async (req, res, next) => {
 
 
 app.post("/signup/", (req, res, next) => {
-  console.log(req.body);
+  //console.log(req.body);
   let contenu = JSON.parse(JSON.stringify(req.body));
-  console.log("Contenu : "+contenu);
+  //console.log("Contenu : "+contenu);
   let result = ConnectionController.sign_up(contenu.email,contenu.username,contenu.password);
 
-  console.log("done");
+  //console.log("done");
   if(result){
   res.redirect("/login_page/");
 }else{
@@ -286,5 +293,5 @@ app.delete('/delete/character/:uuid', (req, res, next) => {
 module.exports = app;
 
 app.listen(port, () => {
-  console.log(`Serveur lancé à  http://localhost:${port}`);
+  //console.log(`Serveur lancé à  http://localhost:${port}`);
 })
