@@ -1,6 +1,12 @@
 module.exports = {
 
 
+  /**
+   * async recommend_to - Méthode qui fournit une liste de recommandations à l'utilisateur
+   *
+   * @param  {int} idUser id de l'utilisateur auquel on souuhaite recommander des parties
+   * @return {array}    ids des parties que l'on veut lui recommander
+   */
   async recommend_to(idUser){
     const prefs = await get_user_preferences(idUser);
     //console.log("Préférences de l'user : ");
