@@ -118,7 +118,7 @@ app.get("/flux",async (req,res)=>{
   const parties = await GameRecommender.recommend_to(req.session.id);
 
 
-  res.render("flux.ejs",{res : parties});
+  res.render("flux.ejs",{res : parties, session : req.session});
 });
 
 
@@ -126,7 +126,7 @@ app.get('/contacts/', async (req, res, next) => {
   //let test = 1;//test, à changer par l'id utilisateur contenu dans le token
   const contacts = await ProfileController.get_contacts(req.session.idUser);//remplacer par userId
   //res.render("frontend/acceuil.ejs");
-  res.render('contacts.ejs',{contact : contacts, username : req.session.pseudo, id : req.session.id});
+  res.render('contacts.ejs',{contact : contacts, username : req.session.pseudo, id : req.session.id, session : req.session});
   //res.send(contacts);
 });
 
