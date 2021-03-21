@@ -275,10 +275,10 @@ function formatDonnees(idPartie,infoPartie,nbJoueur,infoCarac){
 
 
     if(infoPartie.length == 1) infoPartie=infoPartie[0];
-    else //console.log("Wesh mec, ya trop d'info pour une seule partie ! ")
+    //else //console.log("Wesh mec, ya trop d'info pour une seule partie ! ")
 
     if(nbJoueur.length == 1) nbJoueur=nbJoueur[0];
-    else //console.log("Wesh mec, ya trop de nombre de joueurs pour une seule partie ! ")
+    //else //console.log("Wesh mec, ya trop de nombre de joueurs pour une seule partie ! ")
 
     let caracteristiques=[];
     for(let i=0;i<infoCarac.length;i++){
