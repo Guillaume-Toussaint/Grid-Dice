@@ -25,7 +25,7 @@
 
             <!-- Card profil-->
             <div>
-                <form action="profil.php">
+                <form action="/editionprofile" method="post">
                     <h5>Nom utilisateur</h5>
                     <p>gaspard</p>
 
@@ -43,44 +43,44 @@
             </div>
 
             <div>
-                <form action="profil.php">
+                <form action="/editionprofile" method="post">
                     <h5>preference de jeu</h5>
                     <div>
                         <div class="form-check">
-                            <p>Systeme/p>
-                            <input type="checkbox" name="option" id = "fantasy"value="">
+                            <p>Systeme</p>
+                            <input type="checkbox" name="systeme" id = "fantasy"value="">
                             <label class="form-ckeck-label" for="fantasy">D&D 5e </label>
-                            <input type="checkbox" name="option" id="Sci-fi"value="">
+                            <input type="checkbox" name="systeme" id="Sci-fi"value="">
                             <label class="form-ckeck-label" for="Sci-fi">Cyberpunk </label>
-                            <input type="checkbox" name="option" id="CyberPunk"value="">
+                            <input type="checkbox" name="systeme" id="CyberPunk"value="">
                             <label class="form-ckeck-label" for="CyberPunk">Personalisé</label>
                         </div>
 
                         <div class="form-check">
                             <p>genre</p>
-                            <input type="checkbox" name="option" id = "fantasy"value="">
+                            <input type="checkbox" name="genre" id = "fantasy"value="">
                             <label class="form-ckeck-label" for="fantasy">fantasy </label>
-                            <input type="checkbox" name="option" id="Sci-fi"value="">
+                            <input type="checkbox" name="genre" id="Sci-fi"value="">
                             <label class="form-ckeck-label" for="Sci-fi">Sci-fi </label>
-                            <input type="checkbox" name="option" id="CyberPunk"value="">
+                            <input type="checkbox" name="genre" id="CyberPunk"value="">
                             <label class="form-ckeck-label" for="CyberPunk">"CyberPunk</label>
                         </div>
                     </div>
                     <div>
                         <div class="form-check">
                             <p>niveau</p>
-                            <input type="checkbox" name="option" id = "fantasy"value="">
+                            <input type="checkbox" name="niveau" id = "fantasy"value="novice">
                             <label class="form-ckeck-label" for="fantasy">debutant </label>
-                            <input type="checkbox" name="option" id="Sci-fi"value="">
+                            <input type="checkbox" name="niveau" id="Sci-fi"value="moyenne">
                             <label class="form-ckeck-label" for="Sci-fi">moyenne</label>
-                            <input type="checkbox" name="option" id="CyberPunk"value="">
+                            <input type="checkbox" name="niveau" id="CyberPunk"value="complexe">
                             <label class="form-ckeck-label" for="CyberPunk">"Complexe</label>
                         </div>
                         <div class="form-check">
                             <p>Meta</p>
-                            <input type="checkbox" name="option" id = "fantasy"value="">
+                            <input type="checkbox" name="meta1" id = "fantasy"value="">
                             <label class="form-ckeck-label" for="fantasy">accepte les Joueurs nouveau </label>
-                            <input type="checkbox" name="option" id="Sci-fi"value="">
+                            <input type="checkbox" name="meta2" id="Sci-fi"value="">
                             <label class="form-ckeck-label" for="Sci-fi">Partie serieux</label>
                         </div>
                     </div>

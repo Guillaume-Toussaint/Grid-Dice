@@ -61,6 +61,17 @@ app.post('/recherche',async (req,res,next) => {
   res.render('resultat.ejs',{res : parties});
 });
 
+app.post('/editionprofile',async (req,res,next) => {
+  console.log("Body de la requête");
+  console.log(req.body)
+  let preference = await ProfileController.edition_profil(req.body,req.session.idUser);
+  let infos = await ProfileController.get_profile_info(req.session.idUser);
+  //console.log("after recup parties");
+  //console.log(parties);
+  //console.log(parties[0].donnee.caracteristiques);
+  res.render('profil.ejs',{infos: infos,preference: preference, session : req.session});
+});
+
 
 
 
@@ -94,12 +105,24 @@ app.get('/partie', async (req, res, next) => {
 
 app.get('/profile', async (req, res, next) => {
 
+  
   if(req.session.connected){
-  let infos = await ProfileController.get_profile_info(req.session.idUser);
-  //console.log("Infos récupérées Profil");
-  let preference = await ProfileController.get_preference(req.session.idUser);
-  //console.log(preference);
-  res.render("profil.ejs",{infos : infos, preference: preference, session : req.session });
+    
+    let infos = await ProfileController.get_profile_info(req.session.idUser);
+    //console.log("Infos récupérées Profil");
+    let preference = await ProfileController.get_preference(req.session.idUser);
+    //console.log(preference);
+    res.render("profil.ejs",{infos : infos, preference: preference, session : req.session });
+  } else{
+    res.redirect("/login_page");
+  }
+});
+
+app.get('/edit', async (req, res, next) => {
+
+  
+  if(req.session.connected){
+    res.render("edition_profil.ejs",{session : req.session})
   } else{
     res.redirect("/login_page");
   }

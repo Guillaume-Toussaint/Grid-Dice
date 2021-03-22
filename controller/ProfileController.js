@@ -196,7 +196,7 @@ module.exports = {
             );
   },
 
-  queryp(db,query){
+  async queryp(db,query){
 
       //db = require("./DatabaseConnection.js").createConnection();
 
@@ -291,9 +291,44 @@ module.exports = {
       }
 
 
+    },
+
+    async edition_profil(parametre,idUser){
+
+      db = require("./DatabaseConnection.js").createConnection();
+
+      console.log("EDITION PROFIL");
+      console.log(parametre);
+      if(parametre.submit=="Enregistrer les parametre"){
+
+      }
+      if(parametre.submit=="Enregistrer les preferences"){
+
+        let query="DELETE FROM PreferenceUtilisateur WHERE idUtilisateur="+idUser;
+        console.log(query);
+        await queryProfil(db,query);
+        //for(i=0;i<parametre.length;i++){
+        //    query="INSERT INTO PreferenceUtilisateur (idUtilisateur,idPreference) VALUES ("+idUser+","+
+        //            parametre[i]+")";
+        //    console.log(query);
+        //    queryp(db,query);
+        //}
+        let valeur;
+        Object.keys(parametre).forEach(element =>{
+          console.log("element= "+parametre.element.Valeur);
+          element.veleur.forEach(i =>{
+            valeur ="SELECT `idPreference` FROM `Preference` WHERE `typePreference`='"+element+"' and `Valeur`='"+i+"' ";
+            console.log(valeur)
+            query="INSERT INTO PreferenceUtilisateur (idUtilisateur,idPreference) VALUES ("+idUser+","+
+            valeur+")";
+            console.log(query);
+            queryProfil(db,query);
+          }); 
+        });
+      }
+
+
     }
-
-
 
 
 
