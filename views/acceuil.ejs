@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <!DOCTYPE html>
 
 <html lang="fr" >
@@ -8,6 +8,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
     </head>
     <body>
         <!--Navbar lien-->
@@ -15,12 +16,14 @@
 
         <!-- Acceuil-->
         <div class="container">
-            <div class="col align-self-center">
-                <a type="button" href="/partie" class="btn btn-primary">Rechercher une partie</a>
-                <a type="button" href="/flux" class="btn btn-primary">Acceder au flux</a>
+            <div class="row">
+                    <a type="button" href="/partie" class="btn-agree">Rechercher une partie</a>
+                
+                    <a type="button" href="/flux" class="btn-agree">Acceder au flux</a>
+                
             </div>
             <!-- Acces au parite en cour-->
-            <div class="row align-items-center">
+            <div class="row align-items-center black" >
                 <div class="col">
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
@@ -93,18 +96,9 @@
                     </div>
                 </div>
 
-               <button type="button" class="btn btn-primary">cree une partie</button>
+               <button type="button" class="btn-agree">cree une partie</button>
             </div>
         </div>
     </body>
 </html>
-=======
-Test
-<%
-if (connected) { %>
-<h3> Bienvenue, <%=username %> </h3>
 
-<% }else{ %>
-<h3> On se connecte <a href="/login_page">svp</a> </h3>
-<% } %>
->>>>>>> graphic

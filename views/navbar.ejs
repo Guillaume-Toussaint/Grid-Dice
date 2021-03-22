@@ -22,7 +22,7 @@
     <% } %>
     <!-- end img profil -->
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="navbar" class="navbar-menu">
         <div class="navbar-start">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <%
@@ -46,7 +46,7 @@
             <%
             if (session.connected) { %>
             <li class="nav-item">
-                <a class="nav-link" href="/disconnect">deconnection</a>
+                <a class="nav-link btn-disagree" href="/disconnect">Deconnection</a>
             </li>
             <%  } %>
         </ul>

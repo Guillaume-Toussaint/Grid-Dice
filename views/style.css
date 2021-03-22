@@ -1,3 +1,9 @@
+body{
+    background-image: url("background.jpg");
+}
+#nav{
+    background-color:#fcf1de; 
+}
 .container{
     background-image: url("background.jpg");
     background-size: cover;
