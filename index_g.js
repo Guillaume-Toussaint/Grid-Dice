@@ -49,7 +49,7 @@ app.get('/', (req, res, next) => {
 //recherche test
 
 app.get('/searchpage',async (req,res,next) => {
-  res.render('recherche.ejs');
+  res.render('recherche.ejs',{ session : req.session});
 });
 
 app.post('/recherche',async (req,res,next) => {

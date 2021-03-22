@@ -4,21 +4,17 @@ body{
 #nav{
     background-color:#fcf1de; 
 }
-.container{
-    background-image: url("background.jpg");
-    background-size: cover;
-}
 
 .col-md-1{
     background-color: white;
 }
 
-.nav-link{
+.navbar-nav .nav-link{
     background-color: black ;
     border-radius: 12px ;
     color: yellow ;
     margin: 2px;
-    padding: 4px;
+    padding: 10px;
     text-align: center;
 }
 
@@ -77,4 +73,10 @@ body{
     background-color: darkgrey;
     color: white;
     border-radius: 12px;
+}
+.bg-secondary{
+    background-color: darkgrey;
+    color: white;
+    border-radius: 12px;
+    margin-bottom: 10px;
 }
