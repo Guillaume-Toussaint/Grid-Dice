@@ -1,0 +1,74 @@
+.container{
+    background-image: url("background.jpg");
+    background-size: cover;
+}
+
+.col-md-1{
+    background-color: white;
+}
+
+.nav-link{
+    background-color: black ;
+    border-radius: 12px ;
+    color: yellow ;
+    margin: 2px;
+    padding: 4px;
+    text-align: center;
+}
+
+.btn-agree{
+    background-color: green ;
+    border-radius: 12px ;
+    color: white ;
+    margin: 2px;
+    padding: 4px;
+    text-align: center;
+}
+
+.btn-disagree{
+    background-color: red ;
+    border-radius: 12px ;
+    color: white ;
+    margin: 2px;
+    padding: 4px;
+    text-align: center;
+}
+
+.btn-progress{
+    background-color: black ;
+    border-radius: 12px ;
+    color: orange ;
+    margin: 2px;
+    padding: 4px;
+    text-align: center;
+}
+
+.btn-contact{
+    background-color: black ;
+    border-radius: 12px ;
+    color: yellow ;
+    margin: 2px;
+    padding: 4px;
+    text-align: center;
+}
+
+.progress-bar{
+    background-color: orange;
+}
+
+.text-zone{
+    background-color: white;
+    border-radius: 12px;
+    width: 50%;
+    margin: 3px;
+}
+
+.form-select{
+    width: 50%;
+}
+
+.card{
+    background-color: darkgrey;
+    color: white;
+    border-radius: 12px;
+}

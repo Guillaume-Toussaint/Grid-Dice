@@ -1,137 +1,159 @@
 <!DOCTYPE html>
 
 <html lang="fr" >
-    <head>
+
+<head>
     <meta charset="utf-8" />
     <title>contact</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    </head>
-    <body>
+    <link rel="stylesheet" type="text/css" href="../style.css">
 
+</head>
+
+<<<<<<< HEAD
       <!--Navbar lien-->
       <%- include('navbar.ejs'); %>
 
         <div class="main">
+=======
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+>>>>>>> graphic
             <!-- Navbar Profil/Contact-->
-            <nav class="navbar navbar-light bg-light">
+            <nav class="navbar">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#">Profil</a>
-                    <a class="nav-link" href="contact.ejs">Contacts</a>
+                    <a class="nav-link" aria-current="page" href="#" style="color: #ffff00">Profil</a>
+                    <a class="nav-link" href="contact.ejs" style="color: yellow">Contacts</a>
                 </div>
             </nav>
-            <div class="form-group col-6 mx-auto">
-              <form >
-                <input type="text"  class="form-control" id="contact" placeholder="Pseudo du contact à ajouter">
-                <button onClick="addContact()" class="btn btn-primary">Ajouter un contact</button>
-              </form>
-
-            </div>
-
-    <% contact.forEach(function(user){
-        let pseudo = username == user.p1 ? user.p2 : user.p1;
-        let inviting = username == user.p1 ? true : false;
-      %>
-      <div class="card" style="width: 18rem;">
-          <div class="card-body">
-              <h5 class="card-title" id="<%-pseudo%>"><%-pseudo%></h5>
-              <%
-              if(user.permission == "normal"){
-              %>
-
-              <button type="button" class="btn btn-primary">Envoyer un message</button>
-              <button type="button" class="btn btn-primary">Gérer</button> </div>
-              <%}else if(!inviting){%>
-                <button type="button" onclick="acceptInvite('<%-pseudo%>')" class="btn btn-primary">Accepter </button>
-                <button type="button" class="btn btn-primary">Refuser l'invitation</button> </div>
-                <% }else{%>
-                    <label>En attente de réponse</label>
-              <%  } %>
         </div>
-    <% });
-     %>
+
+        <div class="col-xl">
+            <div class="row">
+                <form >
+                    <input type="text"  class="form-control" id="contact" placeholder="Pseudo du contact à ajouter" style="width: 18rem; margin: 4px">
+                    <button onClick="addContact()" class="btn-contact" style="margin: 4px">Ajouter un contact</button>
+                </form>
+            </div class="row">
+            <% contact.forEach(function(user){
+                let pseudo = username == user.p1 ? user.p2 : user.p1;
+                let inviting = username == user.p1 ? true : false;
+            %>
+
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title" id="<%-pseudo%>"><%-pseudo%></h5>
+                    <%
+                    if(user.permission == "normal"){
+                    %>
+                        <button type="button" class="btn-contact">Envoyer un message</button>
+                        <button type="button" class="btn-contact">Gérer</button> </div>
+
+                <%}else if(!inviting){%>
+                <button type="button" onclick="acceptInvite('<%-pseudo%>')" class="btn-agree">Accepter </button>
+                <button type="button" class="btn-disagree">Refuser l'invitation</button> </div>
+
+            <% }else{%>
+                <label>En attente de réponse</label>
+            <%  } %>
+        </div>
+        <% });
+        %>
+    </div>
+</div>
+</div>
+</div>
 </body>
 
 <script type="text/javascript">
 
 
-function addContact(){
+    function addContact(){
 
-  let ok = true;
-  const pseudoInput = document.getElementById("contact").value;
+        let ok = true;
+        const pseudoInput = document.getElementById("contact").value;
 
-  let returns = false;
+        let returns = false;
 
 
-  let xhr = new XMLHttpRequest();
-  xhr.open('GET', 'search/contact/'+pseudoInput,false);
-  xhr.onload = function() {
-    if (xhr.status !=200){
-    alert('L\'utilisateur recherché n\'existe pas');
-    returns = true;
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', 'search/contact/'+pseudoInput,false);
+        xhr.onload = function() {
+            if (xhr.status !=200){
+                alert('L\'utilisateur recherché n\'existe pas');
+                returns = true;
+            }
+
+        };
+        xhr.send();
+
+        if(returns){
+            return;
+        }
+
+
+        let ajout = new XMLHttpRequest();
+
+        ajout.open('POST', '/new/contact',false);
+
+        ajout.setRequestHeader("Content-Type", "application/json");
+        ajout.onload = function() {
+            if (ajout.status === 200) {
+                alert('L\'utilisateur a bien été ajouté');
+                //document.location.reload();
+            }
+        };
+        ajout.send(JSON.stringify({nom : pseudoInput}));
+
+
     }
 
-  };
-  xhr.send();
 
-  if(returns){
-    return;
-  }
+    function acceptInvite(ref){
+        const pseudoInput = ref;
+        console.log("à ajouter : "+pseudoInput);
+        let returns = false;
 
-
-  let ajout = new XMLHttpRequest();
-
-  ajout.open('POST', '/new/contact',false);
-
-  ajout.setRequestHeader("Content-Type", "application/json");
-  ajout.onload = function() {
-    if (ajout.status === 200) {
-      alert('L\'utilisateur a bien été ajouté');
-      //document.location.reload();
-    }
-  };
-  ajout.send(JSON.stringify({nom : pseudoInput}));
-
-
-}
-
-
-
+<<<<<<< HEAD
 function acceptInvite(ref){
   const pseudoInput = ref;
   //console.log("à ajouter : "+pseudoInput);
   let returns = false;
+=======
+>>>>>>> graphic
 
+        let ajout = new XMLHttpRequest();
 
-  let ajout = new XMLHttpRequest();
+        ajout.open('POST', '/accept/invite',false);
 
-  ajout.open('POST', '/accept/invite',false);
+        ajout.setRequestHeader("Content-Type", "application/json");
+        ajout.onload = function() {
+            if (ajout.status === 200) {
+                alert('Invitation acceptée');
+                //document.location.reload();
+            }
+        };
+        ajout.send(JSON.stringify({nom : pseudoInput}));
 
-  ajout.setRequestHeader("Content-Type", "application/json");
-  ajout.onload = function() {
-    if (ajout.status === 200) {
-      alert('Invitation acceptée');
-      //document.location.reload();
     }
-  };
-  ajout.send(JSON.stringify({nom : pseudoInput}));
 
-}
+    /*function addContact(pseudo){
+      let ajout = new XMLHttpRequest();
+      ajout.setRequestHeader("Content-Type", "application/json");
 
-/*function addContact(pseudo){
-  let ajout = new XMLHttpRequest();
-  ajout.setRequestHeader("Content-Type", "application/json");
-
-  ajout.open('POST', '/new/contact',true);
-  ajout.onload = function() {
-    if (ajout.status === 200) {
-      alert('L\'utilisateur a bien été ajouté');
-      //document.location.reload();
-    }
-  };
-  ajout.send(JSON.stringify(pseudo));
-}*/
+      ajout.open('POST', '/new/contact',true);
+      ajout.onload = function() {
+        if (ajout.status === 200) {
+          alert('L\'utilisateur a bien été ajouté');
+          //document.location.reload();
+        }
+      };
+      ajout.send(JSON.stringify(pseudo));
+    }*/
 
 </script>
 </html>
