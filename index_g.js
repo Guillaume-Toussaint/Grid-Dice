@@ -155,7 +155,7 @@ app.get('/contacts/', async (req, res, next) => {
 });
 
 app.get('/search/contact/:pseudo', async (req, res, next) => {
-  //console.log("Req : "+req.params.pseudo);
+  console.log("Req : "+req.params.pseudo);
   const exists = await ProfileController.account_exists(req.params.pseudo);
   //console.log("Account exist : "+exists);
   if(exists){
@@ -168,15 +168,9 @@ app.get('/search/contact/:pseudo', async (req, res, next) => {
 });
 
 app.get("/disconnect",(req,res)=>{
-  if(req.session.connected && req.session.pseudo){
     delete req.session.connected;
     delete req.session.pseudo;
     res.redirect("/login_page");
-  }else{
-    res.redirect("/login_page");
-  }
-
-
 });
 
 

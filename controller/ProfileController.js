@@ -77,7 +77,7 @@ module.exports = {
     let db = require("./DatabaseConnection.js").createConnection();
 
     let query = "SELECT * FROM Utilisateur where pseudo= ?";
-
+    console.log(query);
 
     return  new Promise(
             (resolve,reject) => {
@@ -323,7 +323,7 @@ module.exports = {
             valeur+")";
             console.log(query);
             queryProfil(db,query);
-          }); 
+          });
         });
       }
 
