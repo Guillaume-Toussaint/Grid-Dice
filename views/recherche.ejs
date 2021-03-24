@@ -17,6 +17,7 @@
         <%- include('navbar.ejs'); %>
 
       <div class="col-xl">
+        <div class="card">
     <form method="post" action="/recherche" autocomplete="on">
       <div class="mb-3">
         <label class="col-form-label">Mots clé de la recherche</label>
@@ -29,25 +30,27 @@
           </select>
       </div>
       <div class="form-check">
-        <p>Caracteristique de la partie : </p>
-            <p>genre</p>
-            <input type="checkbox" name="carac[]" id = "fantasy"value="10">
-            <label class="form-ckeck-label" for="fantasy">fantasy </label>
+        <div class="text-zone">
+        <p class="text-yellow"><b>Caracteristiques de la partie </b></p>
+
+            <p><b>Genre</b></p>
+            <input type="checkbox" name="carac[]" id = "Fantasy"value="10">
+            <label class="form-ckeck-label" for="Fantasy">Fantasy </label>
             <input type="checkbox" name="carac[]" id="Sci-fi"value="11">
             <label class="form-ckeck-label" for="Sci-fi">Sci-fi </label>
             <input type="checkbox" name="carac[]" id="CyberPunk"value="12">
-            <label class="form-ckeck-label" for="CyberPunk">"CyberPunk</label>
+            <label class="form-ckeck-label" for="CyberPunk">CyberPunk</label>
 
-
-            <p>Joueurs</p>
-            <input type="checkbox" name="carac[]" id = "debutant"value="Débutant" >
+            <hr/>
+            <p><b>Joueurs</b></p>
+            <input type="checkbox" name="carac[]" id = "debutant" value="Accepte les débutants" >
             <label class="form-ckeck-label" for="debutant">Débutant </label>
             <input type="checkbox" name="carac[]" id="expert"value="Expert">
             <label class="form-ckeck-label" for="expert">Expert</label>
             <input type="checkbox" name="carac[]" id="exigeant"value="Exigeant">
             <label class="form-ckeck-label" for="exigeant">"Exigeant</label>
-
-            <p>Type de partie</p>
+            <hr/>
+            <p><b>Type de partie</b></p>
             <input type="checkbox" name="carac[]" id = "Rapide"value="Rapide" >
             <label class="form-ckeck-label" for="Rapide">Rapide </label>
             <input type="checkbox" name="carac[]" id="longue"value="Longue">
@@ -55,8 +58,12 @@
             <input type="checkbox" name="carac[]" id="difficile"value="Difficile">
             <label class="form-ckeck-label" for="difficile">"Difficile</label>
     </div>
+
+    </div>
+
     <input type="submit" class="btn btn-primary" name="submit" value="recherche">
     </form>
+    </div>
     </div>
     </div>
     </div>

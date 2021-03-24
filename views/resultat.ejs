@@ -51,15 +51,13 @@
                                 </ul>
                                 <p> <%= partie.donnee.nombreJoueur %> joueur(s)</p>
                         </div>
-                    </div>
-
-
-                    <div class="text-zone">
                         <h6 class="card-title"><%= partie.donnee.descriptionPartie%></h6>
+                        <hr>
                         <a href="/partie/<%=partie.idPartie%>"><button type="button" class="btn-progress">Plus de détails</button></a>
+                      </div>
+                  </div>
                         <%  });%>
-                    </div>
-                </div>
+
             </div>
 
         </div>
