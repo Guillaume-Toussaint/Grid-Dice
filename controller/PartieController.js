@@ -179,8 +179,8 @@ module.exports = {
 
         db = require("./DatabaseConnection.js").createConnection();
 
-        queryInit="SELECT idPartie FROM Utilisateur NATURAL JOIN Partie on Partie.idOrganisateur = Utilisateur.idUtilisateur  ";
-
+        queryInit="SELECT idPartie FROM Utilisateur NATURAL JOIN Partie NATURAL JOIN"+
+        " CaracteristiquePartie NATURAL JOIN Caracteristique WHERE idOrganisateur=idUtilisateur"
 
         ////console.log("initialisation: "+queryInit);
 
@@ -220,8 +220,8 @@ module.exports = {
             }
 
         }
-        let query=queryInit+caracteristique_recherche+queryWhere+" GROUP BY idPartie "+order;
-        console.log("Query qui s'execute avant donnees_partie : "+query);
+        let query=queryInit+queryWhere+caracteristique_recherche+" GROUP BY idPartie "+order;
+        //console.log("Query qui s'execute avant donnees_partie : "+query);
 
         const parties=await queryPartie(db,query);
         ////console.log(parties);
