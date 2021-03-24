@@ -233,17 +233,17 @@ app.post('/new/profile', (req, res, next) => {
 app.post("/connect/", async (req, res, next) => {
   ////console.log(req.body);
   ////console.log("Contenu : "+contenu);
-  const user =  await ConnectionController.sign_in(req.body.username,req.body.password);
+  const user =  await ConnectionController.sign_in(req.body.username,req.body.password); //ça déconne là 
+  console.log("user");
 
-
-    if(user){
+    if(user!=undefined){
       req.session.idUser = user.idUtilisateur;
       req.session.pseudo = user.pseudo;
       req.session.connected = true;
       ////console.log("Session mise en place");
       res.status(200).redirect('/');
     }else{//Problème à la connexion, changer après
-      res.status(403).send("Impossible de vous connecter avec ces identifiants");
+      res.status(403).redirect("/login_page");
 
     }
 
