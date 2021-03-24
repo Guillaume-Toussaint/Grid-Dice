@@ -179,7 +179,7 @@ module.exports = {
 
         db = require("./DatabaseConnection.js").createConnection();
 
-        queryInit="SELECT idPartie FROM Utilisateur JOIN Partie on Partie.idOrganisateur = Utilisateur.idUtilisateur  ";
+        queryInit="SELECT idPartie FROM Utilisateur NATURAL JOIN Partie on Partie.idOrganisateur = Utilisateur.idUtilisateur  ";
 
 
         ////console.log("initialisation: "+queryInit);
