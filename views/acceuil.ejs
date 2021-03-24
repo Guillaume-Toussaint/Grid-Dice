@@ -12,18 +12,22 @@
     </head>
     <body>
         <!--Navbar lien-->
-        <%- include('navbar.ejs'); %>
 
         <!-- Acceuil-->
         <div class="container">
             <div class="row">
-                    <a type="button" href="/searchpage" class="btn-agree">Rechercher une partie</a>
+                <div class="col-md-1"> <%- include('navbar.ejs'); %>
+                    
+                </div>
                 
-                    <a type="button" href="/flux" class="btn-agree">Acceder au flux</a>
-                
-            </div>
+           
             <!-- Acces au parite en cour-->
+            <div class="col-xl"> 
             <div class="row align-items-center black" >
+                <a type="button" href="/searchpage" class="btn-agree">Rechercher une partie</a>
+                
+                <a type="button" href="/flux" class="btn-agree">Acceder au flux</a>
+                
                 <div class="col">
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
@@ -98,6 +102,8 @@
 
                <button type="button" class="btn-agree">cree une partie</button>
             </div>
+        </div>
+        </div>
         </div>
     </body>
 </html>
