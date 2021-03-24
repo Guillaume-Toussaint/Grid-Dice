@@ -13,12 +13,16 @@
     <div class="row">
       <%- include('navbar.ejs'); %>
       <div class="col-xl">
+      <div class="row">
+          
+        <h3> Votre flux </h3>
+      
+      <div class="col-xl">
         <!--Navbar lien-->
 
 
         <!-- Gauche-->
         <div>
-          <h3> Votre flux </h3>
           <% res.forEach(function(partie){
             %>
             <div>
@@ -100,7 +104,8 @@
               </div>
 
             </div>
-
+        </div>
+    </div>
 
           </div>
         </div>

@@ -10,89 +10,87 @@
     <link href="../style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <!--Navbar lien-->
-        <%- include('navbar.ejs'); %>
-
-        <!-- Acceuil-->
         <div class="container">
+            <div class="row">
+                <%- include('navbar.ejs'); %>
+                <div class="col-xl">
+                <!-- Navbar Profil/Contact-->
+                    <nav class="navbar navbar-expand ">
+                        <div class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <a class="nav-link bg-secondary" aria-current="page" href="#">Profil</a>
+                            <a class="nav-link bg-secondary" href="/contacts">Contacts</a>
+                        </div>
+                    </nav>
 
-            <!-- Navbar Profil/Contact-->
-            <nav class="navbar navbar-expand ">
-                <div class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <a class="nav-link bg-secondary" aria-current="page" href="#">Profil</a>
-                    <a class="nav-link bg-secondary" href="/contacts">Contacts</a>
-                </div>
-            </nav>
+                <!-- Card profil-->
+                    <div class="row align-items-center bg-secondary">
+                        <div class="col" >
+                            <h5>Nom utilisateur</h5>
+                            <p><%= infos.pseudo%></p>
+                        </div>
+                        <div class="col">
+                            <h5>Pays</h5>
+                            <p><%= infos.pseudo%></p>
+                        </div>
+                        <div class="col">
+                            <h5>Fuseau horaire</h5>
+                            <p><%= infos.fuseauHorraireJoueur%></p>
+                        </div>
+                        <div class="col">
+                            <h5>Description</h5>
+                            <p><%= infos.description%></p>
+                        </div>
+                    </div>
 
-            <!-- Card profil-->
-            <div class="row align-items-center bg-secondary">
-                <div class="col" >
-                    <h5>Nom utilisateur</h5>
-                    <p><%= infos.pseudo%></p>
-                </div>
-                <div class="col">
-                    <h5>Pays</h5>
-                    <p><%= infos.pseudo%></p>
-                </div>
-                <div class="col">
-                    <h5>Fuseau horaire</h5>
-                    <p><%= infos.fuseauHorraireJoueur%></p>
-                </div>
-                <div class="col">
-                    <h5>Description</h5>
-                    <p><%= infos.description%></p>
+                    <div class="row align-items-center bg-secondary">
+                        <h5>preference de jeu</h5>
+                        <div class="col">
+                            <div>
+                                <p>Niveu de jeu</p>
+                                <ul>
+
+                                    <% preference[0].forEach((element) =>{ %>
+                                    <li><%= element.Valeur%></li>
+                                    <% });  %>
+
+                                </ul>
+                            </div>
+                            <div>
+                                <p>Genre</p>
+                                <ul>
+
+                                    <% preference[1].forEach((element) =>{ %>
+                                    <li><%= element.Valeur%></li>
+                                    <% });  %>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <p>Systeme de preference</p>
+                                <ul>
+
+                                    <% preference[2].forEach((element) =>{ %>
+                                    <li><%= element.Valeur%></li>
+                                    <% });  %>
+
+                                </ul>
+                            </div>
+                            <div>
+                                <p>Meta</p>
+                                <ul>
+
+                                    <% preference[3].forEach((element) =>{ %>
+                                    <li><%= element.Valeur%></li>
+                                    <% });  %>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="row align-items-center bg-secondary">
-                <h5>preference de jeu</h5>
-                <div class="col">
-                    <div>
-                        <p>Niveu de jeu</p>
-                        <ul>
-
-                            <% preference[0].forEach((element) =>{ %>
-                            <li><%= element.Valeur%></li>
-                            <% });  %>
-
-                        </ul>
-                    </div>
-                    <div>
-                        <p>Genre</p>
-                        <ul>
-
-                            <% preference[1].forEach((element) =>{ %>
-                            <li><%= element.Valeur%></li>
-                            <% });  %>
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="col">
-                    <div>
-                        <p>Systeme de preference</p>
-                        <ul>
-
-                            <% preference[2].forEach((element) =>{ %>
-                            <li><%= element.Valeur%></li>
-                            <% });  %>
-
-                        </ul>
-                    </div>
-                    <div>
-                        <p>Meta</p>
-                        <ul>
-
-                            <% preference[3].forEach((element) =>{ %>
-                            <li><%= element.Valeur%></li>
-                            <% });  %>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            </div>
-
         </div>
     </body>
 </html>
