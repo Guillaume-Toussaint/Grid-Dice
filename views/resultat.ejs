@@ -14,11 +14,7 @@
         <div>
             <h5>Resultat de la recherche</h5>
 
-            <% res.forEach(function(partie){
-              %>
             <div>
-                <h5>Resultat de la recherche</h5>
-
                 <select class="form-select" aria-label="Default select example">
                     <option selected value="1">Parties récentes</option>
                     <option value="2">Parties anciennces</option>
@@ -61,7 +57,7 @@
                     <div class="text-zone">
                         <h6 class="card-title"><%= partie.donnee.descriptionPartie%></h6>
                         <a href="/partie/<%=partie.idPartie%>"><button type="button" class="btn-progress">Plus de détails</button></a>
-                        <%  });});%>
+                        <%  });%>
                     </div>
                 </div>
             </div>
