@@ -381,15 +381,3 @@ function queryProfil(db,query){
       })
   });
 }
-function formatD(niveau,genre,systeme,meta){
-  let donnee={
-        'niveau':infoPartie.nomPartie,
-        'nomSysteme': infoPartie.nomSysteme,
-        'pseudoCreateur': infoPartie.pseudo,
-        'nomCarte': infoPartie.nomCarte,
-        'descriptionPartie': infoPartie.DescriptionPartie,
-        'nombreJoueur': nbJoueur.infoNbJoueur,
-        'dateCreationPartie':infoPartie.dateCreationPartie,
-        caracteristiques
-  };
-}
