@@ -1,12 +1,12 @@
 body{
     background-image: url("background.jpg");
 }
-#nav{
-    background-color:#fcf1de; 
+.container{
+    max-width: none;
 }
 
 .col-md-1{
-    background-color: white;
+    background-color: #fcf1de;
     width: 15%;
 }
 

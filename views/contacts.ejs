@@ -13,21 +13,20 @@
     </head>
 
     <body>
-        <%- include('navbar.ejs'); %>
+        
     <div class="main">
     <div class="container">
         <div class="row">
-            <div class="col-md-1">
-                <!-- Navbar Profil/Contact-->
+                <%- include('navbar.ejs'); %>
+                
+
+            <div class="col-xl">
                 <nav class="navbar">
                     <div class="navbar-nav">
                         <a class="nav-link" aria-current="page" href="/profile" style="color: #ffff00">Profil</a>
                         <a class="nav-link" href="#" style="color: yellow">Contacts</a>
                     </div>
                 </nav>
-            </div>
-
-            <div class="col-xl">
                 <div class="row">
                     <form >
                         <input type="text"  class="form-control" id="contact" placeholder="Pseudo du contact à ajouter" style="width: 18rem; margin: 4px">
