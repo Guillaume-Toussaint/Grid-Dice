@@ -8,34 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="../style.css">
-<<<<<<< HEAD
     </head>
     <body>
         <%- include('navbar.ejs'); %>
         <div>
             <h5>Resultat de la recherche</h5>
-
-            <select class="form-select" aria-label="Default select example">
-                <option selected>partie recente</option>
-                <option value="1">partie ancienne</option>
-            </select>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Systeme</option>
-                <option value="1">D&D 4e</option>
-                <option value="2">CyberPunk</option>
-                <option value="3">Personalisé</option>
-            </select>
-            </select><select class="form-select" aria-label="Default select example">
-                <option selected>titre</option>
-                <option value="1">Game master</option>
-                <option value="2">description</option>
-                <option value="3">etiquette</option>
-            </select><select class="form-select" aria-label="Default select example">
-                <option selected>nombre de joueur</option>
-                <option value="1">Game master</option>
-                <option value="2">description</option>
-                <option value="3">etiquette</option>
-            </select>
 
             <% res.forEach(function(partie){
               %>
@@ -43,25 +20,20 @@
                 <h5>Resultat de la recherche</h5>
 
                 <select class="form-select" aria-label="Default select example">
-                    <option selected>partie recente</option>
-                    <option value="1">partie ancienne</option>
+                    <option selected value="1">Parties récentes</option>
+                    <option value="2">Parties anciennces</option>
                 </select>
                 <select class="form-select" aria-label="Default select example">
-                    <option selected>Systeme</option>
+                    <option selected>Système</option>
                     <option value="1">D&D 4e</option>
                     <option value="2">CyberPunk</option>
                     <option value="3">Personalisé</option>
                 </select>
                 </select><select class="form-select" aria-label="Default select example">
-                    <option selected>titre</option>
-                    <option value="1">Game master</option>
-                    <option value="2">description</option>
-                    <option value="3">etiquette</option>
-                </select><select class="form-select" aria-label="Default select example">
-                    <option selected>nombre de joueur</option>
-                    <option value="1">Game master</option>
-                    <option value="2">description</option>
-                    <option value="3">etiquette</option>
+                    <option selected>Titre</option>
+                    <option value="1">Auteur</option>
+                    <option value="2">Description</option>
+                </select>
                 </select>
 
                 <% res.forEach(function(partie){
@@ -89,7 +61,7 @@
                     <div class="text-zone">
                         <h6 class="card-title"><%= partie.donnee.descriptionPartie%></h6>
                         <a href="/partie/<%=partie.idPartie%>"><button type="button" class="btn-progress">Plus de détails</button></a>
-                        <%  });%>
+                        <%  });});%>
                     </div>
                 </div>
             </div>

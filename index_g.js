@@ -59,7 +59,7 @@ app.post('/recherche',async (req,res,next) => {
   //console.log("after recup parties");
   //console.log(parties);
   //console.log(parties[0].donnee.caracteristiques);
-  res.render('resultat.ejs',{res : parties});
+  res.render('resultat.ejs',{res : parties, session : req.session});
 });
 
 app.post('/editionprofile',async (req,res,next) => {
@@ -90,12 +90,12 @@ app.get('/sign_up_page',(req,res,next) => {
 });
 
 
-app.get('/partie', async (req, res, next) => {
+app.get('/partie/:uuid', async (req, res, next) => {
   //EXEMPLE D'USAGE
   if(req.session.connected){
-  const informations = await PartieController.get_donnees_partie([{idPartie : req.session.idUser}]);
+  const informations = await PartieController.get_donnees_partie([{idPartie : req.params.uuid}]);
   //console.log("On a les informations de la partie à afficher en détails");
-  //console.log(informations);
+  console.log(informations);
   //fonction qui récupère les infos d'une parties
   res.render("detail_partie.ejs",{infos : informations[0], session : req.session});
 } else{
@@ -106,9 +106,9 @@ app.get('/partie', async (req, res, next) => {
 
 app.get('/profile', async (req, res, next) => {
 
-  
+
   if(req.session.connected){
-    
+
     let infos = await ProfileController.get_profile_info(req.session.idUser);
     //console.log("Infos récupérées Profil");
     let preference = await ProfileController.get_preference(req.session.idUser);
@@ -121,7 +121,7 @@ app.get('/profile', async (req, res, next) => {
 
 app.get('/edit', async (req, res, next) => {
 
-  
+
   if(req.session.connected){
     res.render("edition_profil.ejs",{session : req.session})
   } else{
@@ -173,7 +173,7 @@ app.get("/disconnect",(req,res)=>{
     delete req.session.pseudo;
     res.redirect("/login_page");
   }else{
-
+    res.redirect("/login_page");
   }
 
 
