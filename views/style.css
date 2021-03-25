@@ -1,29 +1,53 @@
 body{
     background-image: url("background.jpg");
 }
-.container{
-    max-width: none;
+#nav{
+    background-color:#fcf1de;
+}
+
+label{
+    margin-left: 10px;
 }
 
 .col-md-1{
     background-color: #fcf1de;
-    width: 15%;
-}
-.pref{
-    min-height: 90px;
+    width: 20%;
+    margin-right: 10px;
 }
 
-.navbar-nav .nav-link{
+.nav-item{
+    margin-bottom: 10px;
+}
+
+.nav-link-1{
     background-color: black ;
     border-radius: 12px ;
-    color: yellow ;
-    margin: 2px;
-    padding: 10px;
+    color: #c87f00;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-align: center;
+}
+
+.nav-link-2{
+    background-color: black ;
+    border-radius: 12px ;
+    color: #fcf1de;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-align: center;
+}
+
+.nav-link-3{
+    background-color: #de0202 ;
+    border-radius: 12px ;
+    color: white ;
+    margin-bottom: 10px;
+    padding: 5px;
     text-align: center;
 }
 
 .btn-agree{
-    background-color: green ;
+    background-color: forestgreen ;
     border-radius: 12px ;
     color: white ;
     margin: 2px;
@@ -32,7 +56,7 @@ body{
 }
 
 .btn-disagree{
-    background-color: red ;
+    background-color: #de0202;
     border-radius: 12px ;
     color: white ;
     margin: 2px;
@@ -43,7 +67,7 @@ body{
 .btn-progress{
     background-color: black ;
     border-radius: 12px ;
-    color: orange ;
+    color: #c87f00 ;
     margin: 2px;
     padding: 4px;
     text-align: center;
@@ -52,7 +76,25 @@ body{
 .btn-contact{
     background-color: black ;
     border-radius: 12px ;
-    color: yellow ;
+    color: #c87f00 ;
+    margin: 2px;
+    padding: 4px;
+    text-align: center;
+}
+
+.btn-search{
+    background-color: black ;
+    border-radius: 12px ;
+    color: forestgreen;
+    margin: 2px;
+    padding: 4px;
+    text-align: center;
+}
+
+.btn-default{
+    background-color: black ;
+    border-radius: 12px ;
+    color: white;
     margin: 2px;
     padding: 4px;
     text-align: center;
@@ -63,11 +105,11 @@ body{
 }
 
 .text-zone{
-    background-color: white;
+    background-color: #fcf1de;
     border-radius: 12px;
     width: 50%;
-    margin: 3px;
-    color : black;
+    margin: 5px;
+    color: black;
 }
 
 .form-select{
@@ -78,10 +120,21 @@ body{
     background-color: darkgrey;
     color: white;
     border-radius: 12px;
+    padding-left: 10px;
 }
-.bg-secondary{
-    background-color: darkgrey;
-    color: white;
+
+.black-background{
+    background-color: #161111;
     border-radius: 12px;
-    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 10px;
+}
+
+.grey-background{
+    background-color: darkgrey;
+    color: black;
+    border-radius: 12px;
+    padding: 10px;
+    margin-left: 10px;
 }

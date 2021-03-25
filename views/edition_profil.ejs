@@ -24,14 +24,14 @@
                 <!-- Navbar Profil/Contact-->
                 <div class="col-xl">
                     <nav class="navbar navbar-expand ">
-                        <div class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <a class="nav-link bg-secondary" aria-current="page" href="#">Profil</a>
-                            <a class="nav-link bg-secondary" href="/contacts">Contacts</a>
+                        <div class="navbar-nav">
+                            <a class="nav-link-1" aria-current="page" href="#">Profil</a>
+                            <a class="nav-link-1" href="/contacts">Contacts</a>
                         </div>
                     </nav>
 
                     <!-- Card profil-->
-                    <div class="card">
+                    <div class="grey-background">
                         <form action="profil.php">
                             <h5>Nom utilisateur</h5>
                             <p>gaspard</p>
@@ -43,27 +43,27 @@
                             <p>GTM + 1</p>
 
                             <h5>Description</h5>
-                            <p style="background-color: white; border-radius: 12px; width: 50%">un juour qui a tu les
-                                jeux fpezkf^pzkef^pzkef^pzkef^pkezf^pkzefpkzf^pz</p>
+                            <p>un joueur qui a tout les
+                                jeux connus à ce jour</p>
 
                             <input type="submit" class="btn-agree" name="submit" value="Enregistrer les parametre">
                         </form>
-                    </div>
 
-                    <div class="card">
+
+                        <hr/>
                         <form action="/editionprofile" method="post">
-                            <h5>preference de jeu</h5>
-                            <div>
+                            <h5><b>preference de jeu</b></h5>
+                            <div class="text-zone">
                                 <div class="form-check">
-                                    <p>Systeme</p>
+                                    <p><b>Systeme</p></b>
                                     <input type="checkbox" name="valeurs" id="fantasy" value="7">
                                     <label class="form-ckeck-label" for="fantasy">D&D 5e </label>
                                     <input type="checkbox" name="valeurs" id="Sci-fi" value="8">
-                                    <label class="form-ckeck-label" for="Sci-fi">l'appelle de chtulu </label>
+                                    <label class="form-ckeck-label" for="Sci-fi">l'appelle de Cthulhu </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <p>genre</p>
+                                    <p><b>genre</p></b>
                                     <input type="checkbox" name="valeurs" id="fantasy" value="5">
                                     <label class="form-ckeck-label" for="fantasy">fantasy </label>
                                     <input type="checkbox" name="valeurs" id="Sci-fi" value="6">
@@ -71,10 +71,9 @@
                                     <input type="checkbox" name="valeurs" id="CyberPunk" value="4">
                                     <label class="form-ckeck-label" for="CyberPunk">"CyberPunk</label>
                                 </div>
-                            </div>
-                            <div>
+
                                 <div class="form-check">
-                                    <p>niveau</p>
+                                    <p><b>niveau</p></b>
                                     <input type="checkbox" name="valeurs" id="fantasy" value="1">
                                     <label class="form-ckeck-label" for="fantasy">Novice</label>
                                     <input type="checkbox" name="valeurs" id="Sci-fi" value="2">
@@ -83,7 +82,7 @@
                                     <label class="form-ckeck-label" for="CyberPunk">"Complexe</label>
                                 </div>
                                 <div class="form-check">
-                                    <p>Meta</p>
+                                    <p><b>Meta</p></b>
                                     <input type="checkbox" name="valeurs" id="fantasy" value="9">
                                     <label class="form-ckeck-label" for="fantasy">accepte les Joueurs nouveau </label>
                                     <input type="checkbox" name="valeurs" id="Sci-fi" value="10">
@@ -91,10 +90,10 @@
                                 </div>
                             </div>
 
-                            <input type="submit" class="btn btn-primary" name="submit"
+                            <input type="submit" class="btn-agree" name="submit"
                                 value="Enregistrer les preferences">
                         </form>
-
+                    </div>
                     </div>
                 </div>
         </div>

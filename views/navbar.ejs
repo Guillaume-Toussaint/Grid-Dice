@@ -29,26 +29,28 @@
             <%
             if (session.connected) { %>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/profile">Mon profil</a>
+                <a class="nav-link-1 active" aria-current="page" href="/profile">Mon profil</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/contacts/">Mes contacts</a>
+                <a class="nav-link-1" href="/contacts/">Mes contacts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Mes personnages</a>
+                <a class="nav-link-1" href="#">Mes personnages</a>
             </li>
             <%  } %>
+                <div style="margin-top: 100px"> <!-- solution provisoire sépration deux parties navbar-->
             <li class="nav-item">
-                <a class="nav-link " href="/" tabindex="-1" aria-disabled="true">Accueil</a>
+                <a class="nav-link-2 " href="/" tabindex="-1" aria-disabled="true">Accueil</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Forum</a>
+                <a class="nav-link-2" href="#">Forum</a>
             </li>
             <%
             if (session.connected) { %>
             <li class="nav-item">
-                <a class="nav-link btn-disagree" href="/disconnect">Déconnexion</a>
+                <a class="nav-link-3" href="/disconnect">Déconnexion</a>
             </li>
+                </div>
             <%  } %>
         </ul>
     </div>

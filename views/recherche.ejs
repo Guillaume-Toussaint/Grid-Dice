@@ -21,16 +21,17 @@
     <form method="post" action="/recherche" autocomplete="on">
       <div class="mb-3">
         <label class="col-form-label">Mots clé de la recherche</label>
-        <input type="text" name="saisie" class="form-control" >
+        <input type="text" name="saisie" class="form-control" style="width: 50%; margin-left: 10px">
         <label  for="Systeme">Rechercher dans : </label>
-          <select class="form-select" name="dans" aria-label="Default select example">
+          <select class="form-select" name="dans" aria-label="Default select example" style="margin-left: 10px">
               <option value="Titre">Titre</option>
               <option value="Auteur">Auteur</option>
               <option value="Description">Description</option>
           </select>
       </div>
-      <div class="form-check">
         <div class="text-zone">
+      <div class="form-check">
+
         <p class="text-yellow"><b>Caracteristiques de la partie </b></p>
 
             <p><b>Genre</b></p>
@@ -57,12 +58,14 @@
             <label class="form-ckeck-label" for="longue">Longue </label>
             <input type="checkbox" name="carac[]" id="difficile"value="Difficile">
             <label class="form-ckeck-label" for="difficile">"Difficile</label>
-    </div>
+
 
     </div>
 
-    <input type="submit" class="btn btn-primary" name="submit" value="recherche">
+    <input type="submit" class="btn-agree" name="submit" value="recherche">
+
     </form>
+        </div>
     </div>
     </div>
     </div>

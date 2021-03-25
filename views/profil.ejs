@@ -17,14 +17,15 @@
                 <!-- Navbar Profil/Contact-->
                     <nav class="navbar navbar-expand ">
                         <div class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <a class="nav-link bg-secondary" aria-current="page" href="#">Profil</a>
-                            <a class="nav-link bg-secondary" href="/contacts">Contacts</a>
+                            <a class="nav-link-1" aria-current="page" href="#">Profil</a>
+                            <a class="nav-link-1" href="/contacts">Contacts</a>
                         </div>
                     </nav>
 
                 <!-- Card profil-->
-                    <div class="row align-items-center bg-secondary">
-                        <div class="col" >
+                    <div class="grey-background">
+                    <div class="row">
+                        <div class="col">
                             <h5>Nom utilisateur</h5>
                             <p><%= infos.pseudo%></p>
                         </div>
@@ -42,21 +43,20 @@
                         </div>
                     </div>
 
-                    <div class="row align-items-center bg-secondary">
-                        <h5>preference de jeu <a href="/edit" <i class="bi bi-pencil-square"></i></h5></a>
-                        <div class="col">
-                            <div class="pref">
+                    <div class="row"></div>
+                        <div class="col-sm">
+                            <div class="text-zone">
+                                <h5>preference de jeu <a href="/edit" <i class="bi bi-pencil-square"></i></h5></a>
                                 <p><b>Niveu de jeu</b></p>
                                 <ul>
 
-                                    <% 
+                                    <%
                                     preference[0].forEach((element) =>{ %>
                                     <li><%= element.Valeur%></li>
                                     <% });  %>
 
                                 </ul>
-                            </div>
-                            <div class="pref">
+
                                 <p><b>Genre</b></p>
                                 <ul>
 
@@ -67,8 +67,8 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="pref">
+                        <div class="col-sm">
+                            <div class="text-zone">
                                 <p><b>Systeme de preferenc</b>e</p>
                                 <ul>
 
@@ -77,8 +77,7 @@
                                     <% });  %>
 
                                 </ul>
-                            </div>
-                            <div class="pref">
+
                                 <p><b>Meta</b></p>
                                 <ul>
 
@@ -88,6 +87,7 @@
 
                                 </ul>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>
