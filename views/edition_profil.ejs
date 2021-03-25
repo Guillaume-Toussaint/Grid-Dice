@@ -34,7 +34,7 @@
                     <div class="grey-background">
                         <form action="profil.php">
                             <h5>Nom utilisateur</h5>
-                            <p>gaspard</p>
+                            <p><%- session.pseudo %></p>
 
                             <h5>Pays</h5>
                             <p>france</p>
@@ -53,9 +53,9 @@
                         <hr/>
                         <form action="/editionprofile" method="post">
                             <div class="text-zone">
-                                <h5><b>preference de jeu</b></h5>
+                                <h5><b>Préférences de jeu</b></h5>
                                 <div class="form-check">
-                                    <p><b>Systeme</p></b>
+                                    <p><b>Système</p></b>
                                     <input type="checkbox" name="valeurs" id="fantasy" value="7">
                                     <label class="form-ckeck-label" for="fantasy">D&D 5e </label>
                                     <input type="checkbox" name="valeurs" id="Sci-fi" value="8">
@@ -63,9 +63,9 @@
                                 </div>
 
                                 <div class="form-check">
-                                    <p><b>genre</p></b>
+                                    <p><b>Genre</p></b>
                                     <input type="checkbox" name="valeurs" id="fantasy" value="5">
-                                    <label class="form-ckeck-label" for="fantasy">fantasy </label>
+                                    <label class="form-ckeck-label" for="fantasy">Fantasy </label>
                                     <input type="checkbox" name="valeurs" id="Sci-fi" value="6">
                                     <label class="form-ckeck-label" for="Sci-fi">Post-apo </label>
                                     <input type="checkbox" name="valeurs" id="CyberPunk" value="4">
@@ -84,9 +84,9 @@
                                 <div class="form-check">
                                     <p><b>Meta</p></b>
                                     <input type="checkbox" name="valeurs" id="fantasy" value="9">
-                                    <label class="form-ckeck-label" for="fantasy">accepte les Joueurs nouveau </label>
+                                    <label class="form-ckeck-label" for="fantasy">Accepte les nouveaux joueurs </label>
                                     <input type="checkbox" name="valeurs" id="Sci-fi" value="10">
-                                    <label class="form-ckeck-label" for="Sci-fi">Partie serieux</label>
+                                    <label class="form-ckeck-label" for="Sci-fi">Partie sérieuse</label>
                                 </div>
                             </div>
 
