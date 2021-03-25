@@ -10,8 +10,12 @@
     <link rel="stylesheet" type="text/css" href="../style.css">
     </head>
     <body>
-        <%- include('navbar.ejs'); %>
-        <div>
+
+        <div class="container">
+          <div class="row">
+            <%- include('navbar.ejs'); %>
+
+            <div class="col-xl">
             <h5>Resultat de la recherche</h5>
 
             <div>
@@ -51,17 +55,16 @@
                                 </ul>
                                 <p> <%= partie.donnee.nombreJoueur %> joueur(s)</p>
                         </div>
-                    </div>
-
-
-                    <div class="text-zone">
                         <h6 class="card-title"><%= partie.donnee.descriptionPartie%></h6>
+                        <hr>
                         <a href="/partie/<%=partie.idPartie%>"><button type="button" class="btn-progress">Plus de détails</button></a>
+                      </div>
+                  </div>
                         <%  });%>
-                    </div>
-                </div>
-            </div>
 
+            </div>
+          </div>
+          </div>
         </div>
     </div>
 </div>

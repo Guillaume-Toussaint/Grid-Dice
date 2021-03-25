@@ -179,14 +179,14 @@ module.exports = {
 
         db = require("./DatabaseConnection.js").createConnection();
 
-        queryInit="SELECT idPartie FROM Utilisateur JOIN Partie on Partie.idOrganisateur = Utilisateur.idUtilisateur  ";
-
+        queryInit="SELECT idPartie FROM Utilisateur NATURAL JOIN Partie NATURAL JOIN"+
+        " CaracteristiquePartie NATURAL JOIN Caracteristique WHERE idOrganisateur=idUtilisateur"
 
         ////console.log("initialisation: "+queryInit);
 
         caracteristique_recherche="";
         if(carac != null){
-            caracteristique_recherche=" WHERE ("
+            caracteristique_recherche=" OR ("
             for(let i=0;i<carac.length;i++){
                 if(i==0) caracteristique_recherche+="valeurCaracteristique='"+carac[i]+"'";
                 else caracteristique_recherche+=" OR valeurCaracteristique='"+carac[i]+"'";
@@ -202,17 +202,17 @@ module.exports = {
             const mots_cle=input.split(" ");
             switch(recherche){
                 case 'Titre':
-                    queryWhere=" AND ("+traitement_input(mots_cle,"nomPartie")+")";
+                    queryWhere=" OR ("+traitement_input(mots_cle,"nomPartie")+")";
                     //console.log(queryWhere);
                     order=" ORDER BY nomPartie";
                     break;
                 case 'Auteur':
-                    queryWhere=" AND ("+traitement_input(mots_cle,"pseudo")+")";
+                    queryWhere=" OR ("+traitement_input(mots_cle,"pseudo")+")";
                     //console.log(queryWhere);
                     order=" ORDER BY pseudo";
                     break;
                 case 'Description':
-                    queryWhere=" AND ("+traitement_input(mots_cle,"DescriptionPartie")+")";
+                    queryWhere=" OR ("+traitement_input(mots_cle,"DescriptionPartie")+")";
                     //console.log(queryWhere);
                     order=" ORDER BY DescriptionPartie";
                     break;

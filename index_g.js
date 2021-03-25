@@ -156,7 +156,7 @@ app.get('/contacts/', async (req, res, next) => {
 });
 
 app.get('/search/contact/:pseudo', async (req, res, next) => {
-  //console.log("Req : "+req.params.pseudo);
+  console.log("Req : "+req.params.pseudo);
   const exists = await ProfileController.account_exists(req.params.pseudo);
   //console.log("Account exist : "+exists);
   if(exists){
@@ -169,15 +169,9 @@ app.get('/search/contact/:pseudo', async (req, res, next) => {
 });
 
 app.get("/disconnect",(req,res)=>{
-  if(req.session.connected && req.session.pseudo){
     delete req.session.connected;
     delete req.session.pseudo;
     res.redirect("/login_page");
-  }else{
-    res.redirect("/login_page");
-  }
-
-
 });
 
 
@@ -240,17 +234,17 @@ app.post('/new/profile', (req, res, next) => {
 app.post("/connect/", async (req, res, next) => {
   ////console.log(req.body);
   ////console.log("Contenu : "+contenu);
-  const user =  await ConnectionController.sign_in(req.body.username,req.body.password);
+  const user =  await ConnectionController.sign_in(req.body.username,req.body.password); //ça déconne là 
+  console.log("user");
 
-
-    if(user){
+    if(user!=undefined){
       req.session.idUser = user.idUtilisateur;
       req.session.pseudo = user.pseudo;
       req.session.connected = true;
       ////console.log("Session mise en place");
       res.status(200).redirect('/');
     }else{//Problème à la connexion, changer après
-      res.status(403).send("Impossible de vous connecter avec ces identifiants");
+      res.status(403).redirect("/login_page");
 
     }
 

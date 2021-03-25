@@ -29,11 +29,14 @@ module.exports =  {
             (resolve,reject) => {
               db.query(requete,values , (err, result) => {
                   if (err) {
-                    reject(err.message);
+                    reject(undefined);
+                    //reject(err.message);
                 }
                 if(result[0]){
                   //console.log("Connexion de  : "+result[0].pseudo);
                    resolve(result[0]);
+                }else{
+                  resolve(undefined);
                 }
                 });
               }

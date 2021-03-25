@@ -64,6 +64,7 @@ body{
     border-radius: 12px;
     width: 50%;
     margin: 3px;
+    color : black;
 }
 
 .form-select{
