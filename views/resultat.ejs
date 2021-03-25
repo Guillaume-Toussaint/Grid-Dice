@@ -42,19 +42,19 @@
                 <div>
 
 
-                    <div class="card-black">
+                    <div class="card-white">
                         <div class="card-body">
                             <h6 class="card-title"><%-partie.donnee.nomPartie %></h5>
-                                <p class="card-text" style="color: whitesmoke"><%-partie.donnee.nomSysteme %></p>
+                                <p class="card-text"><%-partie.donnee.nomSysteme %></p>
 
 
 
                                 <ul>
                                     <% partie.donnee.caracteristiques.forEach((carac) => { %>
-                                        <li style="color: whitesmoke"> <%= carac.caracteristique %></li>
+                                        <li> <%= carac.caracteristique %></li>
                                     <%  }); %>
                                 </ul>
-                                <p style="color: whitesmoke"> <%= partie.donnee.nombreJoueur %> joueur(s)</p>
+                                <p> <%= partie.donnee.nombreJoueur %> joueur(s)</p>
                         </div>
                         <h6 class="card-title"><%= partie.donnee.descriptionPartie%></h6>
                         <hr>

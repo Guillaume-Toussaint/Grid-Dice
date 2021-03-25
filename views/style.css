@@ -5,6 +5,14 @@ body{
     background-color:#fcf1de;
 }
 
+h5{
+    color: black;
+}
+
+h6{
+    color: black;
+}
+
 label{
     margin-left: 10px;
 }
