@@ -12,7 +12,7 @@ module.exports = {
     let mysql = require("mysql");
     let db = require("./DatabaseConnection.js").createConnection();
 
-    let query = "SELECT * FROM Utilisateur NATURAL JOIN CaracteristiqueJoueur NATURAL JOIN Caracteristique where idUtilisateur= ?";
+    let query = "SELECT * FROM Utilisateur  where idUtilisateur= ?";
 
     //console.log("Query : "+query);
 
@@ -314,18 +314,6 @@ module.exports = {
            console.log(query);
            await queryProfil(db,query);
         }
-        // let valeur;
-        // Object.keys(parametre).forEach(element =>{
-        //   console.log("element= "+parametre.valeurs);
-        //   element.veleur.forEach(i =>{
-        //     valeur =queryProfil("SELECT `idPreference` FROM `Preference` WHERE `typePreference`='"+element+"' and `Valeur`='"+i+"' ");
-        //     console.log(valeur)
-        //     query="INSERT INTO PreferenceUtilisateur (idUtilisateur,idPreference) VALUES ("+idUser+","+
-        //     valeur+")";
-        //     console.log(query);
-        //     queryProfil(db,query);
-        //   }); 
-        // });
       }
 
 
