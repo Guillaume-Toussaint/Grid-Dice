@@ -307,24 +307,25 @@ module.exports = {
         let query="DELETE FROM PreferenceUtilisateur WHERE idUtilisateur="+idUser;
         console.log(query);
         await queryProfil(db,query);
-        //for(i=0;i<parametre.length;i++){
-        //    query="INSERT INTO PreferenceUtilisateur (idUtilisateur,idPreference) VALUES ("+idUser+","+
-        //            parametre[i]+")";
-        //    console.log(query);
-        //    queryp(db,query);
-        //}
-        let valeur;
-        Object.keys(parametre).forEach(element =>{
-          console.log("element= "+parametre.element.Valeur);
-          element.veleur.forEach(i =>{
-            valeur ="SELECT `idPreference` FROM `Preference` WHERE `typePreference`='"+element+"' and `Valeur`='"+i+"' ";
-            console.log(valeur)
-            query="INSERT INTO PreferenceUtilisateur (idUtilisateur,idPreference) VALUES ("+idUser+","+
-            valeur+")";
-            console.log(query);
-            queryProfil(db,query);
-          }); 
-        });
+        console.log("element= "+parametre.valeurs);
+        for(i=0;i<parametre.valeurs.length;i++){
+           query="INSERT INTO PreferenceUtilisateur (idUtilisateur,idPreference) VALUES ("+idUser+","+
+                   parametre.valeurs[i]+")";
+           console.log(query);
+           await queryProfil(db,query);
+        }
+        // let valeur;
+        // Object.keys(parametre).forEach(element =>{
+        //   console.log("element= "+parametre.valeurs);
+        //   element.veleur.forEach(i =>{
+        //     valeur =queryProfil("SELECT `idPreference` FROM `Preference` WHERE `typePreference`='"+element+"' and `Valeur`='"+i+"' ");
+        //     console.log(valeur)
+        //     query="INSERT INTO PreferenceUtilisateur (idUtilisateur,idPreference) VALUES ("+idUser+","+
+        //     valeur+")";
+        //     console.log(query);
+        //     queryProfil(db,query);
+        //   }); 
+        // });
       }
 
 

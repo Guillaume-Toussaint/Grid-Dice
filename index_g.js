@@ -65,7 +65,8 @@ app.post('/recherche',async (req,res,next) => {
 app.post('/editionprofile',async (req,res,next) => {
   console.log("Body de la requête");
   console.log(req.body)
-  let preference = await ProfileController.edition_profil(req.body,req.session.idUser);
+  await ProfileController.edition_profil(req.body,req.session.idUser);
+  let preference = await ProfileController.get_preference(req.session.idUser);
   let infos = await ProfileController.get_profile_info(req.session.idUser);
   //console.log("after recup parties");
   //console.log(parties);

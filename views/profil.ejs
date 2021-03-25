@@ -43,13 +43,14 @@
                     </div>
 
                     <div class="row align-items-center bg-secondary">
-                        <h5>preference de jeu</h5>
+                        <h5>preference de jeu <a href="/edit" <i class="bi bi-pencil-square"></i></h5></a>
                         <div class="col">
                             <div>
                                 <p>Niveu de jeu</p>
                                 <ul>
 
-                                    <% preference[0].forEach((element) =>{ %>
+                                    <% 
+                                    preference[0].forEach((element) =>{ %>
                                     <li><%= element.Valeur%></li>
                                     <% });  %>
 
