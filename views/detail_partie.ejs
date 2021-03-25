@@ -24,20 +24,20 @@
                     <h2><%= infos.donnee.nomPartie%></h2>
 
                     <!-- Gauche-->
-                    <div style="background-color: grey; border-radius: 12px; padding-bottom: 4px">
+                    <div class="card-black">
                         <p><b>Partie cree par :</b> <%= infos.donnee.pseudoCreateur %></p>
-                        <button type="button" class="btn-contact">Acceder au profil</button>
+                        <button type="button" class="btn-default" style="width: 50%">Acceder au profil</button>
 
                         <p><b>Systeme de jeu :</b> <%= infos.donnee.nomSysteme%></p>
 
                         <!--<p>horaire de la prochaine partie: 04/01/2021</p>-->
 
                         <p><b>Description</b></p>
-                        <div style="background-color: white;  border-radius: 12px; width: 50%">
+                        <div class="text-zone">
                             <p><%= infos.donnee.descriptionPartie%></p>
                         </div>
                         <p><b>Caracteristique de la partie</b></p>
-                        <div style="background-color: white;  border-radius: 12px; width: 50%">
+                        <div class="text-zone">
                             <ul>
                                 <% infos.donnee.caracteristiques.forEach((carac) =>{ %>
 
@@ -47,7 +47,7 @@
                                 <% });  %>
                             </ul>
                         </div>
-                        <button type="button" class="btn-contact">Contacter l'organisateur</button>
+                        <button type="button" class="btn-default" style="width: 50%">Contacter l'organisateur</button>
                     </div>
 
                 </div>

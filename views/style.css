@@ -40,7 +40,7 @@ label{
 .nav-link-3{
     background-color: #de0202 ;
     border-radius: 12px ;
-    color: white ;
+    color: whitesmoke ;
     margin-bottom: 10px;
     padding: 5px;
     text-align: center;
@@ -49,7 +49,7 @@ label{
 .btn-agree{
     background-color: forestgreen ;
     border-radius: 12px ;
-    color: white ;
+    color: whitesmoke ;
     margin: 2px;
     padding: 4px;
     text-align: center;
@@ -58,14 +58,14 @@ label{
 .btn-disagree{
     background-color: #de0202;
     border-radius: 12px ;
-    color: white ;
+    color: whitesmoke ;
     margin: 2px;
     padding: 4px;
     text-align: center;
 }
 
 .btn-progress{
-    background-color: black ;
+    background-color: #161111 ;
     border-radius: 12px ;
     color: #c87f00 ;
     margin: 2px;
@@ -74,7 +74,7 @@ label{
 }
 
 .btn-contact{
-    background-color: black ;
+    background-color: #161111;
     border-radius: 12px ;
     color: #c87f00 ;
     margin: 2px;
@@ -83,7 +83,7 @@ label{
 }
 
 .btn-search{
-    background-color: black ;
+    background-color: #161111 ;
     border-radius: 12px ;
     color: forestgreen;
     margin: 2px;
@@ -92,9 +92,9 @@ label{
 }
 
 .btn-default{
-    background-color: black ;
+    background-color: #161111 ;
     border-radius: 12px ;
-    color: white;
+    color: whitesmoke;
     margin: 2px;
     padding: 4px;
     text-align: center;
@@ -105,7 +105,7 @@ label{
 }
 
 .text-zone{
-    background-color: #fcf1de;
+    background-color: whitesmoke;
     border-radius: 12px;
     width: 50%;
     margin: 5px;
@@ -116,24 +116,35 @@ label{
     width: 50%;
 }
 
-.card{
+.card-white{
     background-color: darkgrey;
-    color: white;
+    color: whitesmoke;
     border-radius: 12px;
     padding-left: 10px;
+    margin-bottom: 5px;
+}
+
+.card-black{
+    background-color: darkgrey;
+    color: black;
+    border-radius: 12px;
+    padding-left: 10px;
+    margin-bottom: 5px;
 }
 
 .black-background{
-    background-color: #161111;
+    background-color: #2f2a2a;
     border-radius: 12px;
     padding-top: 10px;
     padding-bottom: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
     margin-left: 10px;
 }
 
 .grey-background{
     background-color: darkgrey;
-    color: black;
+    color: #161111;
     border-radius: 12px;
     padding: 10px;
     margin-left: 10px;

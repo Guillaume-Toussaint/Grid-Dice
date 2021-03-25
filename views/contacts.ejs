@@ -21,12 +21,13 @@
 
 
             <div class="col-xl">
-                <nav class="navbar">
+                <nav class="navbar navbar-expand">
                     <div class="navbar-nav">
-                        <a class="nav-link-1" aria-current="page" href="/profile">Profil</a>
-                        <a class="nav-link-1" href="#">Contacts</a>
+                        <a class="nav-link-1" aria-current="page" href="#">Profil</a>
+                        <a class="nav-link-1" href="/contacts">Contacts</a>
                     </div>
                 </nav>
+                <div class="black-background">
                 <div class="row">
                     <form >
                         <input type="text"  class="form-control" id="contact" placeholder="Pseudo du contact à ajouter" style="width: 18rem; margin: 4px">
@@ -37,26 +38,29 @@
                     let pseudo = username == user.p1 ? user.p2 : user.p1;
                     let inviting = username == user.p1 ? true : false;
                 %>
-
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
+                    <div class="card-black" style="margin-top: 5px">
                         <h5 class="card-title" id="<%-pseudo%>"><%-pseudo%></h5>
                         <%
                         if(user.permission == "normal"){
                         %>
-                            <button type="button" class="btn-contact">Envoyer un message</button>
-                            <button type="button" class="btn-contact">Gérer</button> </div>
+                            <button type="button" class="btn-default">Envoyer un message</button>
+                            <button type="button" class="btn-default">Gérer</button> </div>
 
                     <%}else if(!inviting){%>
                     <button type="button" onclick="acceptInvite('<%-pseudo%>')" class="btn-agree">Accepter </button>
                     <button type="button" class="btn-disagree">Refuser l'invitation</button> </div>
+                </div>
 
+                <div class="card-black">
                 <% }else{%>
                     <label>En attente de réponse</label>
                 <%  } %>
-            </div>
+                </div>
+
+            <div class="card-black">
             <% });
             %>
+            </div>
     </div>
     </body>
 

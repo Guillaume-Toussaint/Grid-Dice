@@ -22,14 +22,14 @@
 
 
         <!-- Gauche-->
-        <div>
+        <div class="black-background" style="padding-right: 5px; padding-left: 5px">
           <% res.forEach(function(partie){
             %>
             <div>
 
 
-              <div class="card">
-                <div class="card-body">
+              <div class="card-white" style="margin-bottom: 5px">
+
                   <h6 class="card-title"><%-partie.donnee.nomPartie %></h5>
                     <p class="card-text"><%-partie.donnee.nomSysteme %></p>
 
@@ -41,16 +41,12 @@
                         <%  }); %>
                       </ul>
                       <p> <%= partie.donnee.nombreJoueur %> joueur(s)</p>
-                    </div>
 
 
-
-                  <div class="card">
                     <h6 class="card-title"><%= partie.donnee.descriptionPartie%></h6>
-                    <a href="/partie/<%=partie.idPartie%>"><button type="button" class="btn btn-primary">Plus de détails</button></a>
-                  </div>
-                  </div>
-                  </div>
+                    <a href="/partie/<%=partie.idPartie%>"><button type="button" class="btn-default">Plus de détails</button></a>
+            </div>
+            </div>
                   <%  });%>
                   <!-- -->
 
@@ -63,7 +59,7 @@
             <!-- OBJECTIFS-->
 
             <div class="col-xl">
-              <div style="background-color:grey; border-radius: 12px; margin: 3px">
+              <div class="card-black">
                 <h5>objectifs mensuels</h5>
                 <p>Jouer 5 partie</p>
                 <div class="progress">
@@ -79,25 +75,25 @@
 
 
 
-              <div style="background-color:grey; border-radius: 12px; margin: 3px">
+              <div class="card-black">
 
                 <h5>Evenement en cours</h5>
 
-                <div class="text-zone">
+                <div class="text-zone" style="background: darkgrey">
                   <a>Evenement 1</a>
                   <a>Evenement 2</a>
                 </div>
 
               </div>
-              <div style="background-color:grey; border-radius: 12px; margin: 3px">
+              <div class="card-black" >
                 <h5>prochaine evenements</h5>
 
 
-                <div class="text-zone">
+                <div class="text-zone" style="background: darkgrey">
                   <p>date 1</p>
                   <a>Evenement 3</a>
                 </div>
-                <div class="text-zone">
+                <div class="text-zone" style="background: darkgrey">
                   <p>date 2</p>
                   <a>Evenement 4</a>
                 </div>

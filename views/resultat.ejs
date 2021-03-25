@@ -36,31 +36,34 @@
                 </select>
                 </select>
 
+                <div class="black-background" style="padding-right: 5px; padding-left:5px">
                 <% res.forEach(function(partie){
                 %>
                 <div>
 
 
-                    <div class="text-zone">
+                    <div class="card-black">
                         <div class="card-body">
                             <h6 class="card-title"><%-partie.donnee.nomPartie %></h5>
-                                <p class="card-text"><%-partie.donnee.nomSysteme %></p>
+                                <p class="card-text" style="color: whitesmoke"><%-partie.donnee.nomSysteme %></p>
 
 
 
                                 <ul>
                                     <% partie.donnee.caracteristiques.forEach((carac) => { %>
-                                        <li> <%= carac.caracteristique %></li>
+                                        <li style="color: whitesmoke"> <%= carac.caracteristique %></li>
                                     <%  }); %>
                                 </ul>
-                                <p> <%= partie.donnee.nombreJoueur %> joueur(s)</p>
+                                <p style="color: whitesmoke"> <%= partie.donnee.nombreJoueur %> joueur(s)</p>
                         </div>
                         <h6 class="card-title"><%= partie.donnee.descriptionPartie%></h6>
                         <hr>
-                        <a href="/partie/<%=partie.idPartie%>"><button type="button" class="btn-progress">Plus de détails</button></a>
+                        <a href="/partie/<%=partie.idPartie%>"><button type="button" class="btn-default">Plus de détails</button></a>
                       </div>
                   </div>
+
                         <%  });%>
+                </div>
 
             </div>
           </div>
