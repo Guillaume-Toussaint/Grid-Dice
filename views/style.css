@@ -9,6 +9,9 @@ body{
     background-color: #fcf1de;
     width: 15%;
 }
+.pref{
+    min-height: 90px;
+}
 
 .navbar-nav .nav-link{
     background-color: black ;
