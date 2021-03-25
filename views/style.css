@@ -129,6 +129,7 @@ label{
     color: whitesmoke;
     border-radius: 12px;
     padding-left: 10px;
+    padding-bottom: 4px;
     margin-bottom: 5px;
 }
 
@@ -137,6 +138,7 @@ label{
     color: black;
     border-radius: 12px;
     padding-left: 10px;
+    padding: 3px;
     margin-bottom: 5px;
 }
 
